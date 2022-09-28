@@ -15,10 +15,9 @@ function Navigation() {
         <Container>
           <Navbar.Brand href="/">Let's Go Ride</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link href="/create-event">Create Event</Nav.Link>
             <Nav.Link href="/events">Events</Nav.Link>
-            <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link href="/login">Log In</Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
           </Nav>

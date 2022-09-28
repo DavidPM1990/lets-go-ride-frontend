@@ -58,7 +58,7 @@ function SignupPage() {
         />
       </Form.Group>
       <Button variant='primary' type='submit'>
-        Registro
+        Sign Up
       </Button>
     </Form>
   )
