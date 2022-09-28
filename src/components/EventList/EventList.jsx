@@ -1,10 +1,10 @@
 import "./EventListPage.css";
-import { Button, Card } from 'react-bootstrap';
 import EventAxios from "../../services/eventAxios";
 import { useState, useEffect } from 'react';
+import EventCard from "../EventCard/EventCard"
 
 
-function EventCard() {
+function EventList() {
 
 
     const callEventAxios = new EventAxios()
@@ -28,20 +28,9 @@ function EventCard() {
     return (
         <>
 
-            {events.map((allEvents) => {
+            {events.map((oneEvent) => {
                 return (
-                    <Card key={allEvents.name} style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title>{allEvents.name}</Card.Title>
-                            <Card.Text>
-                                {allEvents.author}
-                                {allEvents.place}
-
-                            </Card.Text>
-                            <Button variant="primary">Join</Button>
-                        </Card.Body>
-                    </Card >
+                    <EventCard oneEvent={oneEvent} />
                 )
             })}
 
@@ -50,7 +39,7 @@ function EventCard() {
     )
 }
 
-export default EventCard
+export default EventList
 
 
 
