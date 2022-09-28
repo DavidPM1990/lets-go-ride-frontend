@@ -35,6 +35,11 @@ function EventCreatePage() {
         console.log("EL TOGGLE =>", eventHTML)
     };
 
+    const updateEventSwitch = (eventHTML) => {
+        const { name, checked } = eventHTML.target;
+        console.log(checked)
+        setNewEvent({ ...newEvent, [name]: checked });
+    };
 
 
 
@@ -88,9 +93,9 @@ function EventCreatePage() {
 
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Check onChange={updateNewEvent} type="switch" name='freestyle' id="custom-switch" value='true' label="Freestyle" />
+                    <Form.Check onChange={updateEventSwitch} type="switch" name='freestyle' id="custom-switch" label="Freestyle" />
                     <br />
-                    <Form.Check onChange={updateNewEvent} type="switch" name='apresSki' id="custom-switch" value='true' label="Après Ski" />
+                    <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' id="custom-switch" label="Après Ski" />
                 </Form.Group>
 
 
