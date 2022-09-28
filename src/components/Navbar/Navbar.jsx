@@ -1,39 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
-import * as PATHS from "../../utils/paths";
-import * as CONSTS from "../../utils/consts";
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import "./Navbar.css";
 
-const Navbar = (props) => {
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+
+
+function Navigation() {
   return (
-    <nav>
-      <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-        {CONSTS.CAPITALIZED_APP} - created with IronLauncher
-      </Link>
-
-      <div className="nav__authLinks">
-        {props.user ? (
-          <>
-            <Link to={PATHS.PROTECTEDPAGE} className="authLink">
-              Protected Page
-            </Link>
-            <button className="nav-logoutbtn" onClick={props.handleLogout}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to={PATHS.SIGNUPPAGE} className="authLink">
-              Signup
-            </Link>
-            <Link to={PATHS.LOGINPAGE} className="authLink">
-              Log In
-            </Link>
-          </>
-        )}
-      </div>
-    </nav>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/">Let's Go Ride</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/create-event">Create Event</Nav.Link>
+            <Nav.Link href="/events">Events</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="/login">Log In</Nav.Link>
+            <Nav.Link href="/signup">Sign Up</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   );
-};
+}
 
-export default Navbar;
+export default Navigation;
+
+
+
+
+
+
+
