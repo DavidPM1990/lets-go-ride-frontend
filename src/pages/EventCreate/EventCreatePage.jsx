@@ -1,19 +1,33 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import EventAxios from '../../services/eventAxios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 
 
 function EventCreatePage() {
-
     const navigate = useNavigate();
     const eventAxios = new EventAxios();
     const [newEvent, setNewEvent] = useState({});
 
+    const [startingDate, setStartingDate] = useState(new Date());
+    const [endingDate, setEndingDate] = useState(null);
+
+    const onChange = (dates) => {
+        const [start, end] = dates;
+        setStartingDate(start);
+        setEndingDate(end);
+    };
+    //PARA ESTILAR EL INPUT DEL CALENDARIO
+    // const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    //     <button className="example-custom-input" onClick={onClick} ref={ref}>
+    //         {value}
+    //     </button>
+    // ))
 
     const createNewEvent = (eventHTML) => {
         eventHTML.preventDefault();
-
         const newData = { ...newEvent }
 
         if (!newEvent.freestyle) {
@@ -22,10 +36,16 @@ function EventCreatePage() {
         if (!newEvent.apresSki) {
             newData.apresSki = false
         }
+        if (!newEvent.startDate) {
+            newData.startDate = startingDate
+        }
+        if (!newEvent.endDate) {
+            newData.endDate = endingDate
+        }
         console.log(newData)
 
         eventAxios.createEvent(newData).then(() => {
-            navigate('/'); // OJOOOOOOOOOOOOOOOOOO CAMBIAR ESTA RUTA
+            navigate('/events');
         })
     }
 
@@ -36,9 +56,13 @@ function EventCreatePage() {
 
     const updateEventSwitch = (eventHTML) => {
         const { name, checked } = eventHTML.target;
-        console.log(checked)
         setNewEvent({ ...newEvent, [name]: checked });
     };
+    // const updateEventCalendar = (eventHTML) => {
+    //     const { name, value } = eventHTML.target;
+    //     console.log(checked)
+    //     setNewEvent({ ...newEvent, [name]: checked });
+    // };
 
 
 
@@ -96,6 +120,23 @@ function EventCreatePage() {
                     <br />
                     <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' id="custom-switch" label="Après Ski" />
                 </Form.Group>
+
+                <div style={{ width: 230 }}><DatePicker
+
+                    selected={startingDate}
+                    closeOnScroll={true}
+                    isClearable
+                    // customInput={<ExampleCustomInput />}
+                    // className="black-border"
+                    onChange={onChange}
+                    onClick={updateNewEvent}
+                    startDate={startingDate}
+                    endDate={endingDate}
+                    selectsRange
+                    inline
+                />
+
+                </div>
 
 
 
