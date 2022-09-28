@@ -1,87 +1,73 @@
-//ver que quitamos y crear un form para registro
+import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import UserAxios from '../../services/userAxios';
 
 
+function SignupPage() {
 
-import React, { useState } from "react";
-import { signup } from "../services/auth";
-import { useNavigate } from "react-router-dom";
-import "./auth.css";
-import * as PATHS from "../utils/paths";
-import * as USER_HELPERS from "../utils/userToken";
+  const [newUser, setNewUser] = useState({});
+  const userInstance = new UserAxios
 
-export default function Signup({ authenticate }) {
-  const [form, setForm] = useState({
-    username: "",
-    password: "",
-  });
-  const { username, password } = form;
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    return setForm({ ...form, [name]: value });
+  const createNewUser = (eventHTML) => {
+    eventHTML.preventDefault();
+    console.log(newUser)
+    userInstance.signUp(newUser).then((response) => {
+      console.log(response)
+    })
   }
 
-  function handleFormSubmission(event) {
-    event.preventDefault();
-    const credentials = {
-      username,
-      password,
-    };
-    signup(credentials).then((res) => {
-      if (!res.status) {
-        // unsuccessful signup
-        console.error("Signup was unsuccessful: ", res);
-        return setError({
-          message: "Signup was unsuccessful! Please check the console.",
-        });
-      }
-      // successful signup
-      USER_HELPERS.setUserToken(res.data.accessToken);
-      authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
-    });
-  }
+  const updateNewUser = (eventHTML) => {
+    const { name, value } = eventHTML.target;
+    setNewUser({ ...newUser, [name]: value });
+  };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleFormSubmission} className="auth__form">
-        <label htmlFor="input-username">Username</label>
-        <input
-          id="input-username"
-          type="text"
-          name="username"
-          placeholder="Text"
-          value={username}
-          onChange={handleInputChange}
-          required
+    <Form onSubmit={createNewUser}>
+      <Form.Group className='mb-3'>
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+          name='username'
+          onChange={updateNewUser}
+          type='text'
+          placeholder=''
         />
-
-        <label htmlFor="input-password">Password</label>
-        <input
-          id="input-password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handleInputChange}
-          required
-          minLength="8"
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control
+          name='phoneNumber'
+          onChange={updateNewUser}
+          type='number'
+          placeholder=''
         />
-
-        {error && (
-          <div className="error-block">
-            <p>There was an error submiting the form:</p>
-            <p>{error.message}</p>
-          </div>
-        )}
-
-        <button className="button__submit" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder=''
+          onChange={updateNewUser}
+          name='email'
+        />
+      </Form.Group>
+      <Form.Group className='mb-3'>
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type='password'
+          name='password'
+          onChange={updateNewUser}
+        />
+      </Form.Group>
+      <Button variant='primary' type='submit'>
+        Registro
+      </Button>
+    </Form>
+  )
 }
+
+export default SignupPage
+
+
+
+
+
+
