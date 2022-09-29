@@ -11,6 +11,7 @@ function LogInPage() {
   const loginInstance = new UserAxios
   const { storeToken, authentication } = useContext(AuthContext);
 
+
   const login = (eventHTML) => {
     eventHTML.preventDefault();
     loginInstance.logIn(user).then((response) => {

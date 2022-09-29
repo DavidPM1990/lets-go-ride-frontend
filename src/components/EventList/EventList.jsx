@@ -2,7 +2,7 @@ import "./EventListPage.css";
 import EventAxios from "../../services/eventAxios";
 import { useState, useEffect } from 'react';
 // import EventCard from "../EventCard/EventCard"
-import RecipeReviewCard from "../EventCard/EventCard"
+import EventCard from "../EventCard/EventCard"
 
 
 function EventList() {
@@ -31,7 +31,9 @@ function EventList() {
 
             {events.map((oneEvent) => {
                 return (
-                    <RecipeReviewCard oneEvent={oneEvent} />
+                    <div key={oneEvent._id}>
+                        <EventCard oneEvent={oneEvent} />
+                    </div>
                 )
             })}
 
