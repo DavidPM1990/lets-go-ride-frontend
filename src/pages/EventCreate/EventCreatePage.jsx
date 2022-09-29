@@ -44,7 +44,8 @@ function EventCreatePage() {
         }
         console.log(newData)
 
-        eventAxios.createEvent(newData).then(() => {
+        eventAxios.createEvent(newData).then((event) => {
+            console.log("AQUI YA ESTA CREADO", event)
             navigate('/events');
         })
     }

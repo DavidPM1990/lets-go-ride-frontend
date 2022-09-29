@@ -1,21 +1,24 @@
 import { useState, useContext } from 'react'
-
-import UserAxios from '../../services/userAxios'
+import { useNavigate } from "react-router-dom";
+import UserAxios from '../../services/auth'
 import { Button, Form } from 'react-bootstrap';
-// import { AuthContext } from '../../services/userAxios' 
+import { AuthContext } from '../../context/auth.context'
 
 
 function LogInPage() {
+  const navigate = useNavigate();
   const [user, setuser] = useState({});
   const loginInstance = new UserAxios
-  // const { storeToken, authentication } = useContext(AuthContext);
+  const { storeToken, authentication } = useContext(AuthContext);
 
   const login = (eventHTML) => {
     eventHTML.preventDefault();
     loginInstance.logIn(user).then((response) => {
       console.log(response)
-      // storeToken(response);                           OJO HACER AUTH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // authentication();
+      storeToken(response);
+      authentication();
+      // console.log("ehhh pq no chusca")
+      navigate('/profile')
     }).catch(err => console.log(err))
   };
 

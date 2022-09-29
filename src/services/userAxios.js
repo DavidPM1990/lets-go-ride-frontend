@@ -1,17 +1,26 @@
-import InitAxios from "./initAxios";
+import InitAxios from './initAxios';
 
-class UserAxios extends InitAxios {
+class ProfileAxios extends InitAxios {
     constructor() {
-        super('auth')
+        super('profile');
     }
 
-    signUp(body) {
-        return this.axios.post('/create', body).then((response) => response.data);
+    profile(token) {
+        return this.axios.get('/', {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        }).then((response) => response.data);
     }
 
-    logIn(body) {
-        return this.axios.post('/login', body).then((response) => response.data);
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new ProfileAxios();
+        }
+        console.log("instancia ------>", this.instance);
+        return this.instance;
     }
+
 }
 
-export default UserAxios;
+export default ProfileAxios.getInstance();

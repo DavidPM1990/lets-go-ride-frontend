@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import UserAxios from '../../services/userAxios';
-
+import UserAxios from '../../services/auth';
+import { useNavigate } from "react-router-dom";
 
 function SignupPage() {
-
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({});
-  const userInstance = new UserAxios
+  const userInstance = new UserAxios()
 
 
   const createNewUser = (eventHTML) => {
     eventHTML.preventDefault();
     console.log(newUser)
-    userInstance.signUp(newUser).then((response) => {
-      console.log(response)
+    userInstance.signUp(newUser).then(() => {
+      navigate('/login')
     })
   }
 
