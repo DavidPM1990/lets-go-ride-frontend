@@ -1,12 +1,15 @@
-import { useState, forwardRef } from 'react';
+import { useState, useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import EventAxios from '../../services/eventAxios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
-
+import { AuthContext } from '../../context/auth.context'
 
 function EventCreatePage() {
+
+    const { user } = useContext(AuthContext)
+
     const navigate = useNavigate();
     const eventAxios = new EventAxios();
     const [newEvent, setNewEvent] = useState({});
@@ -42,6 +45,9 @@ function EventCreatePage() {
         if (!newEvent.endDate) {
             newData.endDate = endingDate
         }
+        if (!newEvent.author) {
+            newData.author = user._id
+        }
         console.log(newData)
 
         eventAxios.createEvent(newData).then((event) => {
@@ -51,6 +57,7 @@ function EventCreatePage() {
     }
 
     const updateNewEvent = (eventHTML) => {
+        console.log(user._id)
         const { name, value } = eventHTML.target;
         setNewEvent({ ...newEvent, [name]: value });
         // console.log("EL TOGGLE =>", eventHTML)

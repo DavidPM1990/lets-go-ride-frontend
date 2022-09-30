@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { createContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ProfileAxios from '../services/userAxios';
 
 
@@ -12,8 +11,6 @@ const AuthProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
-
-    const navigate = useNavigate();
 
     const storeToken = (token) => {
         localStorage.setItem(LOCALSTORAGE_TOKEN, token);
@@ -33,7 +30,6 @@ const AuthProvider = (props) => {
                     setUser(user);
                     setIsLoading(false);
                     setIsLoggedIn(true);
-                    navigate('/home');
                 })
                 .catch((err) => {
                     console.log(err);

@@ -16,6 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -30,6 +32,12 @@ const ExpandMore = styled((props) => {
 
 export default function EventCard({ oneEvent }) {
     const [expanded, setExpanded] = React.useState(false);
+
+    const navigate = useNavigate()
+
+    const navigateTo = (id) => {
+        navigate(`/event/${id}`)
+    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -49,7 +57,7 @@ export default function EventCard({ oneEvent }) {
                     </IconButton>
                 }
                 title={oneEvent.name}
-                subheader={oneEvent.author.username}
+                subheader={oneEvent.eventLevel}
 
             />
             <CardMedia
@@ -79,78 +87,15 @@ export default function EventCard({ oneEvent }) {
                 <CardContent>
                     <Typography variant="subtitle2" ><strong>From:</strong>  {oneEvent.endDate}<br /> <strong>to:</strong>  {oneEvent.startDate}</Typography>
                     <Typography variant="subtitle1" ><br />
-                        Do you wanna join this event?  {oneEvent.author.username}
+                        Do you wanna join this event?  {oneEvent.eventLevel}
+                        Author: {oneEvent.author.username}
                     </Typography><br />
-                    <Link to={`/${oneEvent._id}`}>
-                        <Button variant="outlined">join!</Button>
-                    </Link>
+
+                    <Button onClick={() => navigateTo(oneEvent._id)} variant="outlined">See details!</Button>
+
                 </CardContent>
             </Collapse>
         </Card >
     );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------------------------
-// import { Button, Card } from 'react-bootstrap';
-// import mountainImage from '../../../public/matterhorn-BLOG-mountains';
-
-
-// function EventCard({ oneEvent }) {
-
-//     return (<>
-//         <Card key={oneEvent.name} style={{ width: '18rem' }}>
-//             <Card.Img variant="top" src="https://images.unsplash.com/photo-1441039995991-e5c1178e605a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=853&q=80" />
-//             <Card.Body>
-//                 <Card.Title>{oneEvent.name}</Card.Title>
-//                 <Card.Text>
-//                     <p>{oneEvent.author}</p>
-//                     <p>{oneEvent.place}</p>
-
-//                 </Card.Text>
-//                 <Button variant="dark">Join This Event!</Button>
-//             </Card.Body>
-//         </Card >
-//     </>)
-// }
-
-// export default EventCard;

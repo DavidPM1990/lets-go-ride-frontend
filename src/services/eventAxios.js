@@ -11,7 +11,7 @@ class EventAxios extends InitAxios {
     }
 
     getOneEventId(id) {
-        return this.axios.get(`/${id}`).then((response) => response.data);
+        return this.axios.get(`/getOneEvent/${id}`).then((response) => response.data);
     }
 
     createEvent(body) {
@@ -19,11 +19,11 @@ class EventAxios extends InitAxios {
     }
 
     updateEvent(id, body) {
-        return this.axios.put(`/${id}`, body).then((response) => response.data);
+        return this.axios.put(`/update/${id}`, body).then((response) => response.data);
     }
 
     deleteEvent(id) {
-        return this.axios.delete(`/${id}`).then((response) => response.data);
+        return this.axios.delete(`/deleteEvent/${id}`).then((response) => response.data);
     }
 }
 

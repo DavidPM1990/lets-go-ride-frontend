@@ -10,10 +10,14 @@ const EventIDPage = () => {
     const [event, setevent] = useState();
     const navigate = useNavigate();
     const eventAxios = new EventAxios();
+
     useEffect(() => {
-        eventAxios.getOneEventId(id).then((event) => {
-            setevent(event);
-        });
+        eventAxios
+            .getOneEventId(id)
+            .then((event) => {
+                console.log('Soy el evento :)', event)
+                setevent(event);
+            });
     }, []);
 
     const deleteEvent = (id) => {
