@@ -3,24 +3,14 @@ function Comments({ comments }) {
     return (
         <>
             {comments.map((oneComment) => {
-                return (<>
+                // Esto habra que cambiarlo cuando nos solucionen el populate
+                return (<div key={oneComment}>
+                    <h3>{oneComment}</h3>
                     <h3>{oneComment.author}</h3>
                     <h6>{oneComment.body}</h6>
-                </>
+                </div>
                 )
             })}
-
-            <h5>Holita soy un comment</h5>
-            <h5>Y yo otro jeje</h5>
-            <h5>Y yo otro </h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
-            <h5>Y yo :\</h5>
 
         </>
     )

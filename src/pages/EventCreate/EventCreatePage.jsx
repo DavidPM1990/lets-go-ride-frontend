@@ -48,10 +48,8 @@ function EventCreatePage() {
         if (!newEvent.author) {
             newData.author = user._id
         }
-        console.log(newData)
 
-        eventAxios.createEvent(newData).then((event) => {
-            console.log("AQUI YA ESTA CREADO", event)
+        eventAxios.createEvent(newData).then(() => {
             navigate('/events');
         })
     }
