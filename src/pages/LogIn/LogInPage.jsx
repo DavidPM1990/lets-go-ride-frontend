@@ -21,6 +21,7 @@ function LogInPage() {
     loginInstance.logIn(user).then((response) => {
       console.log('DATOS DEL LOGIN', response)
       storeToken(response.token);
+      console.log('soy el tokeeeeeennnnn------->', response.token)
       authentication();
       // console.log("ehhh pq no chusca")
       navigate('/profile')
