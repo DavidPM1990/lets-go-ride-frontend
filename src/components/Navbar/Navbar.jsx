@@ -5,10 +5,16 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { AuthContext } from '../../context/auth.context';
+import { useContext } from 'react';
+
 
 
 
 function Navigation() {
+
+  const { logOut } = useContext(AuthContext)
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -20,6 +26,7 @@ function Navigation() {
             <Nav.Link href="/events">Events</Nav.Link>
             <Nav.Link href="/login">Log In</Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
+            <Nav.Link href='/' onClick={() => logOut()}>Log Out</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
