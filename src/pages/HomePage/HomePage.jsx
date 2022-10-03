@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 import React from "react";
 import Video from "../../components/Video/Video";
-import CardText from '../../routes/AppRoutes'
+import CardText from '../../components/CardText/CardText'
 
 // cositas que se nos ocurran rollo algun video, algun evento guapo...
 
@@ -9,8 +9,9 @@ import CardText from '../../routes/AppRoutes'
 function HomePage() {
     return (
         <>
-            <Video />
+            <h1>Y TU???</h1>
             <CardText />
+            <Video />
         </>
     )
 }
