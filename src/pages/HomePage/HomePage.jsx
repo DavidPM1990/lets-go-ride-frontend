@@ -1,5 +1,4 @@
 // import { useState } from 'react';
-import ReactPlayer from "react-player";
 import React from "react";
 import Video from "../../components/Video/Video";
 

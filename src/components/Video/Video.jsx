@@ -7,9 +7,9 @@ function Video() {
             <div className="videoApp" style={{ width: '100%', height: '100%', position: 'absolute' }}>
 
                 <ReactPlayer
-                    url='https://www.youtube.com/watch?v=xlUVr3rJ59A'
-                    width='100%'
-                    height='100%'
+                    url='https://www.youtube.com/watch?v=rMuJM51AmJc'
+                    width='50%'
+                    height='50%'
                     controls
                     playing
                     loop
