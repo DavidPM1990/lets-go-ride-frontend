@@ -1,11 +1,16 @@
 // import { useState } from 'react';
+import ReactPlayer from "react-player";
+import React from "react";
+import Video from "../../components/Video/Video";
 
 // cositas que se nos ocurran rollo algun video, algun evento guapo...
 
 
 function HomePage() {
     return (
-        <h1>Hola soy el home page</h1>
+        <Video />
+
+
     )
 }
 
