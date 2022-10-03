@@ -14,17 +14,16 @@ import { useNavigate } from 'react-router-dom';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Comments from '../Comments/Comments'
 import { Button, Form } from 'react-bootstrap';
-
-
+import CommentAxios from '../../services/comments.services';
 
 
 function Event({ event }) {
 
     const navigate = useNavigate();
 
-
-
     const eventInstance = new EventAxios()
+    const commentInstance = new CommentAxios()
+
 
     function deleteEvent(id) {
         console.log("----------->", id)
@@ -35,9 +34,12 @@ function Event({ event }) {
 
     }
 
-    function commentEvent() {
-
+    function postComment() {
+        const id = event._id
+        commentInstance.createComment()
     }
+
+    function commentEvent() { }
 
     function updateOneEvent(id) {
         navigate(`/event/update/${id}`)
@@ -68,9 +70,9 @@ function Event({ event }) {
         </Card>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Make your comment</Form.Label>
-            <Form.Control as="textarea" name='description' hidden rows={4} placeholder="Description of event" />
-
+            <Form.Label><strong>Make your comment</strong></Form.Label>
+            <Form.Control as="textarea" name='description' rows={4} placeholder="Description of event" />
+            <Button onClick={postComment}>Post comment</Button>
         </Form.Group>
 
 
