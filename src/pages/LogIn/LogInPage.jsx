@@ -6,13 +6,12 @@ import { AuthContext } from '../../context/auth.context'
 
 
 function LogInPage() {
-  console.log(localStorage.getItem('tokenAuth'))
   const navigate = useNavigate();
   const [user, setuser] = useState({
     descrp: '',
     lastName: ''
   });
-  const loginInstance = new UserAxios
+  const loginInstance = new UserAxios()
   const { storeToken, authentication } = useContext(AuthContext);
 
 
@@ -23,7 +22,6 @@ function LogInPage() {
       storeToken(response.token);
       console.log('soy el tokeeeeeennnnn------->', response.token)
       authentication();
-      // console.log("ehhh pq no chusca")
       navigate('/profile')
     }).catch(err => console.log(err))
   };

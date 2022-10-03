@@ -9,27 +9,36 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
 import GradeIcon from '@mui/icons-material/Grade';
 import CreateIcon from '@mui/icons-material/Create';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+
 import EventAxios from '../../services/eventAxios';
 import { useNavigate } from 'react-router-dom';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Comments from '../Comments/Comments'
 import { Button, Form } from 'react-bootstrap';
 import CommentAxios from '../../services/comments.services';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+// import userAxios from '../../services/userAxios';
+import { AuthContext } from '../../context/auth.context'
+
 
 
 function Event({ event }) {
 
+    const { user } = useContext(AuthContext)
+
     const navigate = useNavigate();
+
     const eventInstance = new EventAxios()
     const commentInstance = new CommentAxios()
-    const [newComment, setNewComment] = useState({ eventId: event._id });
+    const [newComment, setNewComment] = useState({
+        eventId: event._id,
+        author: user._id
+    });
 
 
     const updateNewComment = (eventHTML) => {
         const { name, value } = eventHTML.target;
         setNewComment({ ...newComment, [name]: value });
-        console.log(newComment)
     };
 
     function deleteEvent(id) {
@@ -42,7 +51,7 @@ function Event({ event }) {
     }
 
     function postComment() {
-        commentInstance.createComment(newComment).then()
+        commentInstance.createComment(newComment).then(console.log(newComment))
     }
 
     function commentEvent() { }
