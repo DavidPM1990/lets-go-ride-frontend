@@ -1,3 +1,4 @@
+import './EventID.css'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Event from '../../components/Event/Event';
@@ -11,13 +12,17 @@ const EventIDPage = () => {
     const navigate = useNavigate();
     const eventAxios = new EventAxios();
 
-    useEffect(() => {
+    function updateEvent() {
         eventAxios
             .getOneEventId(id)
             .then((event) => {
                 console.log('Soy el evento :)', event)
                 setevent(event);
             });
+    }
+
+    useEffect(() => {
+        updateEvent()
     }, []);
 
     const deleteEvent = (id) => {
@@ -25,14 +30,14 @@ const EventIDPage = () => {
             navigate('/events');
         });
     };
-    if (!event) {
+    if (!event) {    //usar isloading del contexto
         return (
             <Spinner animation='border' role='status'>
                 <span className='visually-hidden'>Loading...</span>
             </Spinner>
         );
     }
-    return <Event event={event} deleteEvent={deleteEvent} />;
+    return <Event event={event} updateEvent={updateEvent} deleteEvent={deleteEvent} />;
 };
 
 export default EventIDPage;

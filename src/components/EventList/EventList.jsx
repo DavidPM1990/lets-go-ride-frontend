@@ -1,27 +1,27 @@
 import "./EventListPage.css";
-import { useState, useEffect } from 'react';
-import EventAxios from "../../services/eventAxios";
+// import { useState, useEffect } from 'react';
+// import EventAxios from "../../services/eventAxios";
 import EventCard from "../EventCard/EventCard"
 
-function EventList() {
+function EventList({ events, setevents }) {
 
-    const callEventAxios = new EventAxios()
-    const [events, setevents] = useState([]);
+    // const callEventAxios = new EventAxios()
+    // const [events, setevents] = useState([]);
 
-    const findEvents = () => {
-        callEventAxios
-            .getAllEvents()
-            .then((eventsArr) => {
-                setevents(eventsArr);
-            })
-            .catch((e) => {
-                console.error(e);
-            })
-    }
+    // const findEvents = () => {
+    //     callEventAxios
+    //         .getAllEvents()
+    //         .then((eventsArr) => {
+    //             setevents(eventsArr);
+    //         })
+    //         .catch((e) => {
+    //             console.error(e);
+    //         })
+    // }
 
-    useEffect(() => {
-        findEvents()
-    }, []);
+    // useEffect(() => {
+    //     findEvents()
+    // }, []);
 
     return (
         <>

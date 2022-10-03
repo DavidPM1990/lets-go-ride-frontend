@@ -17,7 +17,7 @@ class ProfileAxios extends InitAxios {
         if (!this.instance) {
             this.instance = new ProfileAxios();
         }
-        console.log("instancia ------>", this.instance);
+
         return this.instance;
     }
 
