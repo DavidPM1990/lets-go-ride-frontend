@@ -49,7 +49,7 @@ function EventUpdate() {
 
         eventInstance.updateEvent(id, newData).then((event) => {
             // console.log("AQUI YA ESTA CREADO", event)
-            navigate(`/events/${id}`);
+            navigate(`/event/${id}`);
         })
     }
 
@@ -72,7 +72,7 @@ function EventUpdate() {
             <br />
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Description</Form.Label>
-                <Form.Control onChange={updateNewEvent} as="textarea" value={event.description} name='descriptiuon' rows={4} placeholder="Description of event" />
+                <Form.Control onChange={updateNewEvent} as="textarea" value={event.description} name='description' rows={4} placeholder="Description of event" />
             </Form.Group>
             <br />
             <Form.Group className="mb-3" controlId="formBasicEmail">
