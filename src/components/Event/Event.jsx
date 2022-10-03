@@ -17,10 +17,9 @@ import Comments from '../Comments/Comments'
 import { Button, Form } from 'react-bootstrap';
 import CommentAxios from '../../services/comments.services';
 import { useState, useContext } from 'react';
-// import userAxios from '../../services/userAxios';
 import { AuthContext } from '../../context/auth.context'
 
-function Event({ event }) {
+function Event({ event, updateEvent }) {
 
     const { user } = useContext(AuthContext)
 
@@ -49,15 +48,22 @@ function Event({ event }) {
     function postComment() {
         commentInstance
             .createComment(newComment)
-            .then(console.log(newComment))
+            .then((newComment) => {
+                console.log("soy el nuevo------->", newComment)
+                updateEvent()
+            })
     }
+
+    function addToFavourites() {
+
+    }
+
 
     function commentEvent() { }
 
     function updateOneEvent(id) {
         navigate(`/event/update/${id}`)
     }
-    // CHECKEAR DOCU DE MATERIALS UI
     return (<>
         <Card sx={{ maxWidth: 645 }}>
             <CardMedia
@@ -76,7 +82,7 @@ function Event({ event }) {
             </CardContent>
             <CardActions>
                 <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
-                <IconButton> <GradeIcon /></IconButton>
+                <IconButton onClick={addToFavourites}> <GradeIcon /></IconButton>
                 <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
                 <IconButton onClick={commentEvent}> <ChatBubbleIcon /></IconButton>
             </CardActions>
