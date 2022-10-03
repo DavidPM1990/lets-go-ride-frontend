@@ -15,18 +15,25 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Comments from '../Comments/Comments'
 import { Button, Form } from 'react-bootstrap';
 import CommentAxios from '../../services/comments.services';
+import { useState } from 'react';
 
 
 function Event({ event }) {
 
     const navigate = useNavigate();
-
     const eventInstance = new EventAxios()
     const commentInstance = new CommentAxios()
+    const [newComment, setNewComment] = useState({ eventId: event._id });
 
+
+    const updateNewComment = (eventHTML) => {
+        const { name, value } = eventHTML.target;
+        setNewComment({ ...newComment, [name]: value });
+        console.log(newComment)
+    };
 
     function deleteEvent(id) {
-        console.log("----------->", id)
+        console.log("Deleted------->", id)
         eventInstance
             .deleteEvent(id)
             .then(() => navigate("/events"))
@@ -35,8 +42,7 @@ function Event({ event }) {
     }
 
     function postComment() {
-        const id = event._id
-        commentInstance.createComment()
+        commentInstance.createComment(newComment).then()
     }
 
     function commentEvent() { }
@@ -71,10 +77,9 @@ function Event({ event }) {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label><strong>Make your comment</strong></Form.Label>
-            <Form.Control as="textarea" name='description' rows={4} placeholder="Description of event" />
+            <Form.Control as="textarea" onChange={updateNewComment} name='body' rows={4} placeholder="Description of event" />
             <Button onClick={postComment}>Post comment</Button>
         </Form.Group>
-
 
         <Comments comments={event.comments} />
     </>

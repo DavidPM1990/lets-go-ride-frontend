@@ -58,7 +58,6 @@ function EventCreatePage() {
         console.log(user._id)
         const { name, value } = eventHTML.target;
         setNewEvent({ ...newEvent, [name]: value });
-        // console.log("EL TOGGLE =>", eventHTML)
     };
 
     const updateEventSwitch = (eventHTML) => {
