@@ -1,19 +1,19 @@
+import "react-datepicker/dist/react-datepicker.css"
 import { useState, useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../context/auth.context'
 import EventAxios from '../../services/eventAxios';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
-import { AuthContext } from '../../context/auth.context'
 
 function EventCreatePage() {
 
     const { user } = useContext(AuthContext)
-
     const navigate = useNavigate();
-    const eventAxios = new EventAxios();
-    const [newEvent, setNewEvent] = useState({});
 
+    const eventAxios = new EventAxios();
+
+    const [newEvent, setNewEvent] = useState({});
     const [startingDate, setStartingDate] = useState(new Date());
     const [endingDate, setEndingDate] = useState(null);
 
@@ -33,6 +33,7 @@ function EventCreatePage() {
         eventHTML.preventDefault();
         const newData = { ...newEvent }
 
+        // CERDADA BIEN GUAPA. BORRAD
         if (!newEvent.freestyle) {
             newData.freestyle = false
         }
@@ -49,13 +50,15 @@ function EventCreatePage() {
             newData.author = user._id
         }
 
-        eventAxios.createEvent(newData).then(() => {
-            navigate('/events');
-        })
+        eventAxios
+            .createEvent(newData)
+            .then(() => {
+                navigate('/events');
+            })
     }
 
     const updateNewEvent = (eventHTML) => {
-        console.log(user._id)
+        // console.log(user._id)
         const { name, value } = eventHTML.target;
         setNewEvent({ ...newEvent, [name]: value });
     };
@@ -64,6 +67,7 @@ function EventCreatePage() {
         const { name, checked } = eventHTML.target;
         setNewEvent({ ...newEvent, [name]: checked });
     };
+
     // const updateEventCalendar = (eventHTML) => {
     //     const { name, value } = eventHTML.target;
     //     console.log(checked)
@@ -72,6 +76,7 @@ function EventCreatePage() {
 
 
 
+    // VALIDACIÓN EN FRONT INPUTS 
     return (
         <>
             <Form onSubmit={createNewEvent}>

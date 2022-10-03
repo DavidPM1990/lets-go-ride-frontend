@@ -6,7 +6,6 @@ import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 
-
 function EventUpdate() {
 
     const { id } = useParams();
@@ -33,6 +32,7 @@ function EventUpdate() {
         eventHTML.preventDefault();
         const newData = { ...event }
 
+        // ESTO NOOOOO  
         if (!event.freestyle) {
             newData.freestyle = false
         }

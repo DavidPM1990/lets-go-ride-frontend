@@ -1,10 +1,8 @@
+import "./LogIn.css"
 import { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-import UserAxios from '../../services/auth'
-import { Button, Form } from 'react-bootstrap';
 import { AuthContext } from '../../context/auth.context'
-import "./LogIn.css"
-
+import UserAxios from '../../services/auth'
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -34,14 +32,14 @@ function LogInPage() {
 
   return (
 
-    <div class="login-box">
+    <div className="login-box">
       <h2>Login</h2>
       <form onSubmit={login}>
-        <div class="user-box">
+        <div className="user-box">
           <input type="text" name="username" onChange={updateUser} required="" />
           <label>Username</label>
         </div>
-        <div class="user-box">
+        <div className="user-box">
           <input type="password" name="password" onChange={updateUser} required="" />
           <label>Password</label>
         </div>
@@ -54,38 +52,6 @@ function LogInPage() {
         </button>
       </form>
     </div>
-
-    // <Form onSubmit={login}>
-    //   <Form.Group className='mb-3'>
-    //     <Form.Label>Username</Form.Label>
-    //     <Form.Control
-    //       type='text'
-    //       placeholder=''
-    //       onChange={updateUser}
-    //       name='username'
-    //     />
-    //   </Form.Group>
-    //   <Form.Group className='mb-3'>
-    //     <Form.Label>Password</Form.Label>
-    //     <Form.Control type='password' name='password' onChange={updateUser} />
-    //   </Form.Group>
-    //   <Button variant='primary' type='submit'>
-    //     Log in
-    //   </Button>
-    // </Form>
-
-
-
-
-
-
-
-
-
-
-
-
-
   )
 }
 

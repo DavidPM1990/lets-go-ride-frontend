@@ -1,13 +1,8 @@
-import EventCard from '../../components/EventList/EventList.jsx'
-
-
-
+import EventList from '../../components/EventList/EventList.jsx'
 
 function EventListPage() {
     return (
-        <>
-            <EventCard />
-        </>
+        <EventList />
     )
 }
 export default EventListPage;

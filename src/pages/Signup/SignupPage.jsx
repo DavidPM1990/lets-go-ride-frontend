@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+
 import UserAxios from '../../services/auth';
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css"
@@ -26,7 +26,7 @@ function SignupPage() {
   return (
 
 
-    <div class="login-box">
+    <div className="login-box">
       <h2>Sign Up</h2>
       <form onSubmit={createNewUser}>
         <div className="user-box">
@@ -45,9 +45,7 @@ function SignupPage() {
           <input type="password" name="password" onChange={updateNewUser} required="" />
           <label>Password</label>
         </div>
-
         <button className='buttonStyle' type='submit'>Create
-
           <span></span>
           <span></span>
           <span></span>
@@ -55,6 +53,8 @@ function SignupPage() {
         </button>
       </form>
     </div>
+
+
 
 
 

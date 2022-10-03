@@ -20,8 +20,6 @@ import { useState, useContext } from 'react';
 // import userAxios from '../../services/userAxios';
 import { AuthContext } from '../../context/auth.context'
 
-
-
 function Event({ event }) {
 
     const { user } = useContext(AuthContext)
@@ -49,7 +47,9 @@ function Event({ event }) {
     }
 
     function postComment() {
-        commentInstance.createComment(newComment).then(console.log(newComment))
+        commentInstance
+            .createComment(newComment)
+            .then(console.log(newComment))
     }
 
     function commentEvent() { }
