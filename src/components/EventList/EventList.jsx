@@ -16,7 +16,6 @@ function EventList() {
         callEventAxios.getAllEvents()
             .then((eventsArr) => {
                 setevents(eventsArr);
-                console.log(events)
             })
             .catch((e) => {
                 console.error(e);
@@ -43,26 +42,5 @@ function EventList() {
 }
 
 export default EventList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

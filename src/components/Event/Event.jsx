@@ -35,7 +35,6 @@ function Event({ event }) {
         author: user._id
     });
 
-
     const updateNewComment = (eventHTML) => {
         const { name, value } = eventHTML.target;
         setNewComment({ ...newComment, [name]: value });
@@ -47,7 +46,6 @@ function Event({ event }) {
             .deleteEvent(id)
             .then(() => navigate("/events"))
             .catch((err) => console.log(err))
-
     }
 
     function postComment() {
@@ -92,6 +90,6 @@ function Event({ event }) {
 
         <Comments comments={event.comments} />
     </>
-    );
+    )
 }
 export default Event
