@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import snowboard from './assets/snowboard.jpg'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
-import GradeIcon from '@mui/icons-material/Grade';
+import SendIcon from '@mui/icons-material/Send';
 import CreateIcon from '@mui/icons-material/Create';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
@@ -58,8 +58,12 @@ function Event({ event, updateEvent }) {
 
     }
 
+    let comments = false
 
-    function commentEvent() { }
+    function commentEvent() {
+        comments ? comments = false : comments = true
+        console.log('despues de darle al boton ------>', comments)
+    }
 
     function updateOneEvent(id) {
         navigate(`/event/update/${id}`)
@@ -82,9 +86,14 @@ function Event({ event, updateEvent }) {
             </CardContent>
             <CardActions>
                 <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
-                <IconButton onClick={addToFavourites}> <GradeIcon /></IconButton>
+
                 <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
                 <IconButton onClick={commentEvent}> <ChatBubbleIcon /></IconButton>
+
+
+                {/* aqui abajo hay que hacer la llamada al back */}
+
+                <Button>Join this event!</Button>
             </CardActions>
         </Card>
 

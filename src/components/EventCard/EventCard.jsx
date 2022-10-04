@@ -51,11 +51,7 @@ export default function EventCard({ oneEvent }) {
 
                     </Avatar>
                 }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
+
                 title={oneEvent.name}
                 subheader={oneEvent.eventLevel}
 
@@ -68,12 +64,8 @@ export default function EventCard({ oneEvent }) {
             />
 
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
+
+
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}

@@ -8,12 +8,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { AuthContext } from '../../context/auth.context';
 import { useContext } from 'react';
 
-
-
-
 function Navigation() {
 
-  const { logOut } = useContext(AuthContext)
+  const { logOut, isLoading, isLoggedIn } = useContext(AuthContext)
 
   return (
     <>
@@ -21,20 +18,32 @@ function Navigation() {
         <Container>
           <Navbar.Brand href="/">Let's Go Ride</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/profile">Profile</Nav.Link>
-            <Nav.Link href="/create-event">Create Event</Nav.Link>
-            <Nav.Link href="/events">Events</Nav.Link>
-            <Nav.Link href="/login">Log In</Nav.Link>
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
-            <Nav.Link href='/' onClick={() => logOut()}>Log Out</Nav.Link>
+            {!isLoading & isLoggedIn ? (
+              <>
+                <Nav.Link href="/profile">Profile</Nav.Link>
+                <Nav.Link href="/create-event">Create Event</Nav.Link>
+                <Nav.Link href="/events">Events</Nav.Link>
+                <Nav.Link href='/' onClick={() => logOut()}>Log Out</Nav.Link>
+              </>
+            ) : <>
+              <Nav.Link href="/login">Log In</Nav.Link>
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
+            </>}
           </Nav>
         </Container>
       </Navbar>
     </>
   );
 }
-
 export default Navigation;
+
+
+
+
+
+
+
+
 
 
 
