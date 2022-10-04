@@ -4,9 +4,10 @@ import EventIDPage from "../pages/EventID/EventIDPage"
 import EventListPage from "../pages/EventList/EventListPage"
 import HomePage from "../pages/HomePage/HomePage"
 import LogInPage from "../pages/LogIn/LogInPage"
-import ProfilePage from "../pages/ProfilePage/ProfilePage"
+import ProfilePage from "../pages/Profile/ProfilePage"
 import SignupPage from "../pages/Signup/SignupPage"
 import EventUpdate from "../pages/EventUpdate/EventUpdatePage"
+
 
 const AppRoutes = () => {
     return (
