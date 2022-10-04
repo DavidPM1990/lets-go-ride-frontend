@@ -15,27 +15,24 @@ import EventAxios from '../../services/eventAxios';
 import { useNavigate } from 'react-router-dom';
 import Comments from '../Comments/Comments'
 import { Button, Form } from 'react-bootstrap';
-import CommentAxios from '../../services/comments.services';
+
 import { useState, useContext } from 'react';
-import { AuthContext } from '../../context/auth.context'
+import ApresSki from '../ApresSki/ApresSki';
+import Freestyle from '../freestyle/freestyle';
+import FormComments from '../FormComments/FormComments';
 
 function Event({ event, updateEvent }) {
 
-    const { user } = useContext(AuthContext)
-
     const navigate = useNavigate();
+    const [showForm, setShowForm] = useState(false)
 
     const eventInstance = new EventAxios()
-    const commentInstance = new CommentAxios()
-    const [newComment, setNewComment] = useState({
-        eventId: event._id,
-        author: user._id
-    });
 
-    const updateNewComment = (eventHTML) => {
-        const { name, value } = eventHTML.target;
-        setNewComment({ ...newComment, [name]: value });
-    };
+    // const [newComment, setNewComment] = useState({
+    //     eventId: event._id,
+    //     author: user._id
+    // });
+
 
     function deleteEvent(id) {
         console.log("Deleted------->", id)
@@ -45,24 +42,16 @@ function Event({ event, updateEvent }) {
             .catch((err) => console.log(err))
     }
 
-    function postComment() {
-        commentInstance
-            .createComment(newComment)
-            .then((newComment) => {
-                console.log("soy el nuevo------->", newComment)
-                updateEvent()
-            })
-    }
 
-    function addToFavourites() {
 
-    }
+    // function addToFavourites() {
 
-    let comments = false
+    // }
 
-    function commentEvent() {
-        comments ? comments = false : comments = true
-        console.log('despues de darle al boton ------>', comments)
+    // let comments = false
+
+    function handleForm() {
+        setShowForm(!showForm)
     }
 
     function updateOneEvent(id) {
@@ -80,31 +69,58 @@ function Event({ event, updateEvent }) {
                 <Typography gutterBottom variant="h5" component="div">
                     {event.name}
                 </Typography>
+                <Typography gutterBottom variant="h5" component="div">
+                    {event.author.username}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {event.eventLevel}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {event.place}
+                </Typography>
+                <br />
                 <Typography variant="body2" color="text.secondary">
                     {event.description}
                 </Typography>
+                <br />
+                <Typography variant="body2" color="text.secondary">
+                    {event.startDate}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {event.endDate}
+                </Typography>
+                <br />
+                <ApresSki party={event.apresSki} />
+                <Freestyle freestyle={event.freestyle} />
             </CardContent>
             <CardActions>
                 <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
-
                 <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
-                <IconButton onClick={commentEvent}> <ChatBubbleIcon /></IconButton>
+                <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
 
-
-                {/* aqui abajo hay que hacer la llamada al back */}
 
                 <Button>Join this event!</Button>
+                {/* aqui abajo hay que hacer la llamada al back */}
             </CardActions>
         </Card>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label><strong>Make your comment</strong></Form.Label>
-            <Form.Control as="textarea" onChange={updateNewComment} name='body' rows={4} placeholder="Description of event" />
-            <Button onClick={postComment}>Post comment</Button>
-        </Form.Group>
+        {
+            showForm && <FormComments updateEvent={updateEvent} event={event} />
+        }
+
+
 
         <Comments comments={event.comments} />
     </>
     )
 }
 export default Event
+
+
+
+
+
+
+
+
+

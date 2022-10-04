@@ -67,12 +67,12 @@ function EventUpdate() {
         <Form onSubmit={createNewEvent}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Title</Form.Label>
-                <Form.Control onChange={updateNewEvent} size="lg" name='name' value={event.name} type="text" placeholder="Title of event" />
+                <Form.Control onChange={updateNewEvent} size="lg" name='name' value={event?.name || ""} type="text" placeholder="Title of event" />
             </Form.Group>
             <br />
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Description</Form.Label>
-                <Form.Control onChange={updateNewEvent} as="textarea" value={event.description} name='description' rows={4} placeholder="Description of event" />
+                <Form.Control onChange={updateNewEvent} as="textarea" value={event?.description || ""} name='description' rows={4} placeholder="Description of event" />
             </Form.Group>
             <br />
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -104,7 +104,7 @@ function EventUpdate() {
             <br />
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Check onChange={updateEventSwitch} type="switch" checked={event.freestyle} name='freestyle' id="custom-switch" label="Freestyle" />
+                <Form.Check onChange={updateEventSwitch} type="switch" checked={event.freestyle || ""} name='freestyle' id="custom-switch" label="Freestyle" />
                 <br />
                 <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' id="custom-switch" label="Après Ski" />
             </Form.Group>

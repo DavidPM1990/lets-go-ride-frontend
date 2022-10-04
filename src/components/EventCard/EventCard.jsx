@@ -18,6 +18,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 
 
+
 const ExpandMore = styled((props) => {
 
     const { expand, ...other } = props;
@@ -79,8 +80,9 @@ export default function EventCard({ oneEvent }) {
                 <CardContent>
                     <Typography variant="subtitle2" ><strong>From:</strong>  {oneEvent.endDate}<br /> <strong>to:</strong>  {oneEvent.startDate}</Typography>
                     <Typography variant="subtitle1" ><br />
-                        Do you wanna join this event?  {oneEvent.eventLevel}
-                        Author: {oneEvent.author.username}
+                        <br />
+                        <strong>Author:</strong> {oneEvent.author.username}<br />
+                        Do you wanna join this event?
                     </Typography><br />
 
                     <Button onClick={() => navigateTo(oneEvent._id)} variant="outlined">See details!</Button>
