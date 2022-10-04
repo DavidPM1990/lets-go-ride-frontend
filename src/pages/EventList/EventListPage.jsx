@@ -5,9 +5,9 @@ import EventList from '../../components/EventList/EventList.jsx'
 import SearchBar from '../../components/Searchbar/Searchbar'
 
 function EventListPage() {
-    const [events, setevents] = useState(null);
-    const [_events, setcopy] = useState(null);
 
+    const [events, setevents] = useState([]);
+    const [eventsCopy, setEventsCopy] = useState([]);
 
     const callEventAxios = new EventAxios()
 
@@ -16,6 +16,7 @@ function EventListPage() {
             .getAllEvents()
             .then((eventsArr) => {
                 setevents(eventsArr);
+                setEventsCopy(eventsArr)
             })
             .catch((e) => {
                 console.error(e);
@@ -24,10 +25,12 @@ function EventListPage() {
 
     useEffect(() => {
         findEvents()
-        console.log(events)
-        setcopy(events)
-        console.log(_events)
     }, []);
+
+    useEffect(() => {
+        console.log("LOS EVENTOS", events)
+        console.log("LA COPIA", eventsCopy)
+    }, [eventsCopy, events]);
 
     if (!events) {
         return (
@@ -38,7 +41,7 @@ function EventListPage() {
     }
     else return (
         <>
-            <SearchBar events={_events} setevents={setevents} />
+            <SearchBar eventsCopy={eventsCopy} setevents={setevents} />
             <EventList events={events} setevents={setevents} />
         </>
     )
