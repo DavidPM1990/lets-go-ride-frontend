@@ -3,7 +3,7 @@ function Searchbar({ events, setevents }) {
     const search = (e) => {
         console.log(e.target.value)
         let text = e.target.value
-
+        console.log("Soy la copia de evenos", events)
         let results = events.filter(event => event.name.includes(text))
         console.log(results)
 
