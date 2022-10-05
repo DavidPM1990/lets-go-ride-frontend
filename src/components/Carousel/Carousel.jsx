@@ -1,31 +1,38 @@
-import './Carousel.css'
+import React from 'react';
+import {
+    MDBCarousel,
+    MDBCarouselItem,
+} from 'mdb-react-ui-kit';
 
-function Carousel() {
+export default function Carousel() {
     return (
-        <div>
-            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img className="d-block w-100" src="..." alt="First slide" />
-                    </div>
-                    <div className="carousel-item">
-                        <img className="d-block w-100" src="..." alt="Second slide" />
-                    </div>
-                    <div className="carousel-item">
-                        <img className="d-block w-100" src="..." alt="Third slide" />
-                    </div>
-                </div>
-                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    )
-}
+        <MDBCarousel showIndicators fade>
+            <MDBCarouselItem
+                className='w-25 d-block'
+                itemId={1}
+                src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
+                alt='imagen'
+            >
 
-export default Carousel
+            </MDBCarouselItem>
+
+            <MDBCarouselItem
+                className='w-25 d-block'
+                itemId={2}
+                src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
+                alt='...'
+            >
+
+            </MDBCarouselItem>
+
+            <MDBCarouselItem
+                className='w-25 d-block'
+                itemId={3}
+                src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
+                alt='...'
+            >
+
+            </MDBCarouselItem>
+        </MDBCarousel>
+    );
+}
