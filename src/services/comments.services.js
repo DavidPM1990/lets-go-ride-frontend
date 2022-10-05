@@ -13,6 +13,10 @@ class CommentAxios extends InitAxios {
         return this.axios.post('/create-comment', body, eventId).then((response) => response.data)
     }
 
+    deleteComment(id) {
+        return this.axios.delete(`/delete-comment/${id}`).then((response) => response.data);
+    }
+
 }
 
 export default CommentAxios;

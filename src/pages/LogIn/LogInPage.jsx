@@ -1,33 +1,44 @@
 import "./LogIn.css"
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../../context/auth.context'
 import UserAxios from '../../services/auth'
 
+
 function LogInPage() {
   const navigate = useNavigate();
-  const [user, setuser] = useState({
+  const [userlogin, setuserlogin] = useState({
     descrp: '',
     lastName: ''
   });
+
   const loginInstance = new UserAxios()
-  const { storeToken, authentication } = useContext(AuthContext);
+  const { storeToken, authentication, user } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log(user)
+    if (user) {
+      navigate('/profile')
+    }
+  }, [user])
+
+
 
 
   const login = (eventHTML) => {
     eventHTML.preventDefault();
-    loginInstance.logIn(user).then((response) => {
+    loginInstance.logIn(userlogin).then((response) => {
       console.log('DATOS DEL LOGIN', response)
       storeToken(response.token);
       console.log('soy el tokeeeeeennnnn------->', response.token)
       authentication();
-      navigate('/profile')
+
     }).catch(err => console.log(err))
   };
 
   const updateUser = (eventHTML) => {
     const { value, name } = eventHTML.target;
-    setuser({ ...user, [name]: value });
+    setuserlogin({ ...userlogin, [name]: value });
   };
 
   return (
