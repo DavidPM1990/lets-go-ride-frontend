@@ -106,21 +106,20 @@ function EventUpdate() {
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Check onChange={updateEventSwitch} type="switch" checked={event.freestyle || ""} name='freestyle' id="custom-switch" label="Freestyle" />
                 <br />
-                <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' id="custom-switch" label="Après Ski" />
+                <Form.Check onChange={updateEventSwitch} type="switch" checked={event.apresSki || ""} name='apresSki' id="custom-switch" label="Après Ski" />
             </Form.Group>
 
-            <div style={{ width: 230 }}><DatePicker
-
-                selected={startingDate}
-                closeOnScroll={true}
-                isClearable
-                onChange={onChange}
-                onClick={updateNewEvent}
-                startDate={startingDate}
-                endDate={endingDate}
-                selectsRange
-                inline
-            />
+            <div style={{ width: 230 }}>
+                <DatePicker
+                    selected={startingDate}
+                    isClearable
+                    onChange={onChange}
+                    onClick={updateNewEvent}
+                    startDate={startingDate}
+                    endDate={endingDate}
+                    selectsRange
+                    inline
+                />
 
             </div>
 

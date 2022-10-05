@@ -48,9 +48,18 @@ nav {
 }
 
 .nameColor {
-  color: rgb(0, 255, 17)
+  text-decoration: none;
+  color: inherit;
+  color: rgb(0, 255, 17);
+
 }
 
 .bgColor {
   background-color: #0c131d;
+}
+
+.navStyle {
+  text-decoration: none;
+  color: #919599;
+  color: inherit !important;
 }

@@ -82,17 +82,17 @@ function EventCreatePage() {
             <Form onSubmit={createNewEvent}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control onChange={updateNewEvent} size="lg" name='name' type="text" placeholder="Title of event" />
+                    <Form.Control onChange={updateNewEvent} size="lg" name='name' required type="text" placeholder="Title of event" />
                 </Form.Group>
                 <br />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control onChange={updateNewEvent} as="textarea" name='description' rows={4} placeholder="Description of event" />
+                    <Form.Control onChange={updateNewEvent} as="textarea" required name='description' rows={4} placeholder="Description of event" />
                 </Form.Group>
                 <br />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Select onChange={updateNewEvent} name='eventLevel' aria-label="Default select example">
-                        <option>Select the difficulty of the event</option>
+                    <Form.Select onChange={updateNewEvent} name='eventLevel' required aria-label="Default select example">
+                        <option></option>
                         <option value="High">High</option>
                         <option value="Medium-High">Medium-High</option>
                         <option value="Medium">Medium</option>
@@ -102,8 +102,8 @@ function EventCreatePage() {
                 </Form.Group>
                 <br />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Select onChange={updateNewEvent} name='place' aria-label="Default select example">
-                        <option>Choose the place where the event will take place</option>
+                    <Form.Select onChange={updateNewEvent} name='place' required aria-label="Default select example">
+                        <option></option>
                         <option value="Baqueira-Beret">Baqueira-Beret</option>
                         <option value="Boí Taüll">Boí Taüll</option>
                         <option value="Formigal">Formigal</option>
@@ -117,15 +117,6 @@ function EventCreatePage() {
                     </Form.Select>
                 </Form.Group>
                 <br />
-
-
-                {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Check onChange={updateNewEvent} type="checkbox" name='freestyle' id="custom-switch" value='true' label="Freestyle" />
-                    <br />
-                    <Form.Check onChange={updateNewEvent} type="checkbox" name='apresSki' id="custom-switch" value='true' label="Après Ski" />
-                </Form.Group> */}
-
-
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Check onChange={updateEventSwitch} type="switch" name='freestyle' id="custom-switch" label="Freestyle" />
                     <br />
@@ -135,7 +126,7 @@ function EventCreatePage() {
                 <div style={{ width: 230 }}><DatePicker
 
                     selected={startingDate}
-                    closeOnScroll={true}
+
                     isClearable
                     // customInput={<ExampleCustomInput />}
                     // className="black-border"
@@ -145,12 +136,9 @@ function EventCreatePage() {
                     endDate={endingDate}
                     selectsRange
                     inline
+                    required
                 />
-
                 </div>
-
-
-
                 <Button variant='primary' type='submit'>
                     Create Event
                 </Button>
@@ -160,4 +148,8 @@ function EventCreatePage() {
 }
 
 export default EventCreatePage;
+
+
+
+
 

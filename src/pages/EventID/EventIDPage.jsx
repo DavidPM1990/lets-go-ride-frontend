@@ -1,10 +1,11 @@
 import './EventID.css'
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useResolvedPath } from 'react-router-dom';
 import Event from '../../components/Event/Event';
 import EventAxios from '../../services/eventAxios';
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
+import userAxios from '../../services/userAxios';
 
 const EventIDPage = () => {
     const { id } = useParams();
@@ -30,6 +31,7 @@ const EventIDPage = () => {
             navigate('/events');
         });
     };
+
     if (!event) {    //usar isloading del contexto
         return (
             <Spinner animation='border' role='status'>
@@ -41,3 +43,7 @@ const EventIDPage = () => {
 };
 
 export default EventIDPage;
+
+
+
+
