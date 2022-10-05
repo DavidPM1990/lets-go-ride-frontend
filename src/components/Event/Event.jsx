@@ -1,38 +1,33 @@
 import * as React from 'react';
+import { IconButton } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import snowboard from './assets/snowboard.jpg'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
 import CreateIcon from '@mui/icons-material/Create';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
+import { AuthContext } from '../../context/auth.context'
 import EventAxios from '../../services/eventAxios';
 import { useNavigate } from 'react-router-dom';
-import Comments from '../Comments/Comments'
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import { useState, useContext } from 'react';
+import Comments from '../Comments/Comments'
 import ApresSki from '../ApresSki/ApresSki';
 import Freestyle from '../freestyle/freestyle';
 import FormComments from '../FormComments/FormComments';
+import snowboard from './assets/snowboard.jpg'
 
 function Event({ event, updateEvent }) {
 
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false)
 
     const eventInstance = new EventAxios()
-
-    // const [newComment, setNewComment] = useState({
-    //     eventId: event._id,
-    //     author: user._id
-    // });
-
 
     function deleteEvent(id) {
         console.log("Deleted------->", id)
@@ -42,13 +37,12 @@ function Event({ event, updateEvent }) {
             .catch((err) => console.log(err))
     }
 
-
-
-    // function addToFavourites() {
-
-    // }
-
-    // let comments = false
+    function addToFavourites() {
+        console.log("soy el user", user._id)
+        eventInstance.joinEvent(user._id, event._id)
+            .then(console.log("Me he unido :)"))
+            .catch((err) => console.log(err))
+    }
 
     function handleForm() {
         setShowForm(!showForm)
@@ -57,6 +51,7 @@ function Event({ event, updateEvent }) {
     function updateOneEvent(id) {
         navigate(`/event/update/${id}`)
     }
+
     return (<>
         <Card sx={{ maxWidth: 645 }}>
             <CardMedia
@@ -98,9 +93,7 @@ function Event({ event, updateEvent }) {
                 <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
                 <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
 
-
-                <Button>Join this event!</Button>
-                {/* aqui abajo hay que hacer la llamada al back */}
+                <Button onClick={addToFavourites}>Join this event!</Button>
             </CardActions>
         </Card>
 
