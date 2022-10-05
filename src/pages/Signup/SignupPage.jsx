@@ -30,19 +30,19 @@ function SignupPage() {
       <h2>Sign Up</h2>
       <form onSubmit={createNewUser}>
         <div className="user-box">
-          <input type="text" name="username" onChange={updateNewUser} required="" />
+          <input type="text" name="username" onChange={updateNewUser} required />
           <label>Username</label>
         </div>
         <div className="user-box">
-          <input type="number" name="phoneNumber" onChange={updateNewUser} required="" />
+          <input type="number" name="phoneNumber" onChange={updateNewUser} required />
           <label>Phone Number</label>
         </div>
         <div className="user-box">
-          <input type="email" name="email" onChange={updateNewUser} required="" />
+          <input type="email" name="email" onChange={updateNewUser} required />
           <label>Email</label>
         </div>
         <div className="user-box">
-          <input type="password" name="password" onChange={updateNewUser} required="" />
+          <input type="password" name="password" onChange={updateNewUser} required />
           <label>Password</label>
         </div>
         <button className='buttonStyle' type='submit'>Create

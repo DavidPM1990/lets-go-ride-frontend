@@ -45,16 +45,16 @@ function LogInPage() {
 
     <div className="login-box">
       <h2>Login</h2>
-      <form >
+      <form onSubmit={login}>
         <div className="user-box">
-          <input type="text" name="username" onChange={updateUser} required="" />
+          <input type="text" name="username" onChange={updateUser} required />
           <label>Username</label>
         </div>
         <div className="user-box">
-          <input type="password" name="password" onChange={updateUser} required="" />
+          <input type="password" name="password" onChange={updateUser} required />
           <label>Password</label>
         </div>
-        <button onClick={login} type='submit'>
+        <button type='submit'>
           <span></span>
           <span></span>
           <span></span>

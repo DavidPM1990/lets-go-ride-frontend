@@ -29,6 +29,17 @@ function Event({ event, updateEvent }) {
 
     const eventInstance = new EventAxios()
 
+    let showButton;
+    let showUpdateButton;
+
+    if (user._id === event.author._id) {
+        showButton = true
+        showUpdateButton = true
+    } else {
+        showButton = false
+        showUpdateButton = false
+    }
+
     function deleteEvent(id) {
         console.log("Deleted------->", id)
         eventInstance
@@ -89,8 +100,15 @@ function Event({ event, updateEvent }) {
                 <Freestyle freestyle={event.freestyle} />
             </CardContent>
             <CardActions>
-                <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
-                <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
+
+                {
+                    showButton && <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
+                }
+
+                {
+                    showUpdateButton && <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
+                }
+
                 <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
 
                 <Button onClick={addToFavourites}>Join this event!</Button>
@@ -100,14 +118,18 @@ function Event({ event, updateEvent }) {
         {
             showForm && <FormComments updateEvent={updateEvent} event={event} handleForm={handleForm} />
         }
-
-
-
         <Comments comments={event.comments} updateEvent={updateEvent} event={event} />
     </>
     )
 }
 export default Event
+
+
+
+
+
+
+
 
 
 
