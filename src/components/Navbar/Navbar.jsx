@@ -1,6 +1,6 @@
 // import React from "react";
 // import { Link } from "react-router-dom";
-// import "./Navbar.css";
+import "./Navbar.css";
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -10,17 +10,19 @@ import { useContext } from 'react';
 
 function Navigation() {
 
-  const { logOut, isLoading, isLoggedIn } = useContext(AuthContext)
+  const { logOut, isLoading, isLoggedIn, user } = useContext(AuthContext)
+
+
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar className='bgColor' variant="dark">
         <Container>
           <Navbar.Brand href="/">Let's Go Ride</Navbar.Brand>
           <Nav className="me-auto">
             {!isLoading & isLoggedIn ? (
               <>
-                <Nav.Link href="/profile">Profile</Nav.Link>
+                <Nav.Link className='nameColor' href="/profile">{user.username}</Nav.Link>
                 <Nav.Link href="/create-event">Create Event</Nav.Link>
                 <Nav.Link href="/events">Events</Nav.Link>
                 <Nav.Link href='/' onClick={() => logOut()}>Log Out</Nav.Link>

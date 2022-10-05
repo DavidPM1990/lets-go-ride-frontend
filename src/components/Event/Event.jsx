@@ -98,12 +98,12 @@ function Event({ event, updateEvent }) {
         </Card>
 
         {
-            showForm && <FormComments updateEvent={updateEvent} event={event} />
+            showForm && <FormComments updateEvent={updateEvent} event={event} handleForm={handleForm} />
         }
 
 
 
-        <Comments comments={event.comments} />
+        <Comments comments={event.comments} updateEvent={updateEvent} event={event} />
     </>
     )
 }

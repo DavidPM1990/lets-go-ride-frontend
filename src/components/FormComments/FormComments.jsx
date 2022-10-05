@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/auth.context'
 
-function FormComments({ updateEvent, event }) {
+function FormComments({ updateEvent, event, handleForm }) {
 
     const { user } = useContext(AuthContext)
 
@@ -20,6 +20,7 @@ function FormComments({ updateEvent, event }) {
             .then((newComment) => {
                 console.log("soy el nuevo------->", newComment)
                 updateEvent()
+                handleForm()
             })
     }
 
