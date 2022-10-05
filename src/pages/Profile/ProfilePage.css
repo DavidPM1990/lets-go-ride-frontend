@@ -1,0 +1,9 @@
+.eventP {
+    margin: 0;
+    margin-top: 20px;
+    background-color: rgb(6, 6, 94);
+    color: white;
+    border-radius: 25;
+    width: max-content;
+    cursor: pointer;
+}

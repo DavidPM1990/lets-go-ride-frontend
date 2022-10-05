@@ -46,10 +46,5 @@ body {
     margin: -120px 0px 0px 0px;
     line-height: 19px;
     font-size: 14px;
-}
-
-.text-container h3 {
-    margin: 20px 0px 10px 0px;
-    color: #04bcff;
-    font-size: 18px;
+    color: black
 }
