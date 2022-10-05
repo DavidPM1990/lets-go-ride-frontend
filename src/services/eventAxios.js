@@ -22,6 +22,10 @@ class EventAxios extends InitAxios {
         return this.axios.put(`/update/${id}`, body).then((response) => response.data);
     }
 
+    joinEvent(id, userId) {
+        return this.axios.put(`/updateList/${id}`, userId).then((response) => response.data);
+    }
+
     deleteEvent(id) {
         return this.axios.delete(`/deleteEvent/${id}`).then((response) => response.data);
     }

@@ -4,7 +4,7 @@ function Searchbar({ eventsCopy, setevents }) {
 
     const search = (e) => {
         let text = e.target.value
-        let results = eventsCopy.filter(event => event.name.includes(text))
+        let results = eventsCopy.filter(event => event.name.toLowerCase().includes(text.toLowerCase()))
         setevents(results)
     }
 
