@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 function Searchbar({ eventsCopy, setevents }) {
 
     const search = (e) => {
@@ -7,10 +5,6 @@ function Searchbar({ eventsCopy, setevents }) {
         let results = eventsCopy.filter(event => event.name.toLowerCase().includes(text.toLowerCase()))
         setevents(results)
     }
-
-    useEffect(() => {
-        console.log(eventsCopy)
-    }, [])
 
     return (
         <div>

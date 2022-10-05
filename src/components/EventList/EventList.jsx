@@ -3,7 +3,7 @@ import "./EventListPage.css";
 // import EventAxios from "../../services/eventAxios";
 import EventCard from "../EventCard/EventCard"
 
-function EventList({ events, setevents }) {
+function EventList({ events }) {
 
     // const callEventAxios = new EventAxios()
     // const [events, setevents] = useState([]);

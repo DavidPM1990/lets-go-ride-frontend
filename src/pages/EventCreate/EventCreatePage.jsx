@@ -14,7 +14,7 @@ function EventCreatePage() {
     const eventAxios = new EventAxios();
 
     const [newEvent, setNewEvent] = useState({});
-    const [startingDate, setStartingDate] = useState(new Date());
+    const [startingDate, setStartingDate] = useState(null);
     const [endingDate, setEndingDate] = useState(null);
 
     const onChange = (dates) => {

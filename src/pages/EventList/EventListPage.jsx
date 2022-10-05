@@ -27,11 +27,6 @@ function EventListPage() {
         findEvents()
     }, []);
 
-    useEffect(() => {
-        console.log("LOS EVENTOS", events)
-        console.log("LA COPIA", eventsCopy)
-    }, [eventsCopy, events]);
-
     if (!events) {
         return (
             <Spinner animation='border' role='status'>

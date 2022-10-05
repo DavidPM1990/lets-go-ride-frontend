@@ -23,6 +23,15 @@ import snowboard from './assets/snowboard.jpg'
 
 function Event({ event, updateEvent }) {
 
+    let startDate
+    let endDate
+
+    function formatDates() {
+        startDate = new Date(event.startDate).toDateString()
+        endDate = new Date(event.endDate).toDateString()
+    }
+    formatDates()
+
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false)
@@ -90,10 +99,19 @@ function Event({ event, updateEvent }) {
                 </Typography>
                 <br />
                 <Typography variant="body2" color="text.secondary">
-                    {event.startDate}
+                    {startDate}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {event.endDate}
+                    {endDate}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    <span>Users who joined this:</span>
+                    <br />
+                    {event.usersList.map(el => {
+                        return (
+                            <span key={el._id}><span>{el.username}</span></span>
+                        )
+                    })}
                 </Typography>
                 <br />
                 <ApresSki party={event.apresSki} />
