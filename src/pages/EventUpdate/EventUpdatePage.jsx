@@ -126,7 +126,7 @@ function EventUpdate() {
 
 
             <Button variant='primary' type='submit'>
-                Create Event
+                Update Event
             </Button>
         </Form>
     )

@@ -10,9 +10,9 @@ import CreateIcon from '@mui/icons-material/Create';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
 import { AuthContext } from '../../context/auth.context'
-import EventAxios from '../../services/eventAxios';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import EventAxios from '../../services/eventAxios';
 
 import { useState, useContext } from 'react';
 import Comments from '../Comments/Comments'
@@ -21,33 +21,47 @@ import Freestyle from '../freestyle/freestyle';
 import FormComments from '../FormComments/FormComments';
 import snowboard from './assets/snowboard.jpg'
 
-function Event({ event, updateEvent }) {
+function Event({ event, updateEvent, plano }) {
 
     let startDate
     let endDate
 
     function formatDates() {
+        // const prueba = event.startDate.toLocaleString("en-US", { timeZone: "Australia/Adelaide" })
+        // console.log("Hola soy la fecha", prueba)
         startDate = new Date(event.startDate).toDateString()
         endDate = new Date(event.endDate).toDateString()
     }
-    formatDates()
 
-    const { user } = useContext(AuthContext);
+    const { user, authentication } = useContext(AuthContext);
     const navigate = useNavigate();
     const [showForm, setShowForm] = useState(false)
+    const [toggleButton, setToggleButton] = useState('Join this event :)')
 
     const eventInstance = new EventAxios()
 
     let showButton;
     let showUpdateButton;
+    let showFavButton;
 
-    if (user._id === event.author._id) {
-        showButton = true
-        showUpdateButton = true
-    } else {
-        showButton = false
-        showUpdateButton = false
+    function identify() {
+        if (user._id === event.author._id) {
+            console.log("soy el creador del evento")
+            showButton = true
+            showUpdateButton = true
+            showFavButton = false
+        } else {
+            console.log("NO soy el creador del evento")
+            showButton = false
+            showUpdateButton = false
+            showFavButton = true
+        }
     }
+
+    identify()
+    formatDates()
+
+
 
     function deleteEvent(id) {
         console.log("Deleted------->", id)
@@ -57,10 +71,18 @@ function Event({ event, updateEvent }) {
             .catch((err) => console.log(err))
     }
 
+
+
     function addToFavourites() {
         console.log("soy el user", user._id)
+
+
         eventInstance.joinEvent(user._id, event._id)
-            .then(console.log("Me he unido :)"))
+            .then(() => {
+                console.log("Me he unido al evento :)")
+                updateEvent()
+                authentication()
+            })
             .catch((err) => console.log(err))
     }
 
@@ -77,7 +99,7 @@ function Event({ event, updateEvent }) {
             <CardMedia
                 component="img"
                 height="140"
-                image={snowboard}
+                image={plano}
                 alt="image"
             />
             <CardContent>
@@ -129,7 +151,14 @@ function Event({ event, updateEvent }) {
 
                 <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
 
-                <Button onClick={addToFavourites}>Join this event!</Button>
+                {
+                    showFavButton && <Button onClick={addToFavourites}>
+                        {
+                            user.eventsJoined.map(event => event._id).includes(event._id) ? 'Leave this event :(' : 'Join this event :)'
+                        }
+                    </Button>
+                }
+
             </CardActions>
         </Card>
 
@@ -141,19 +170,4 @@ function Event({ event, updateEvent }) {
     )
 }
 export default Event
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

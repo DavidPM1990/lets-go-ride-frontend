@@ -1,12 +1,13 @@
 import './Comments.css'
 import Card from 'react-bootstrap/Card';
 import CommentAxios from '../../services/comments.services';
-import { Navigate } from 'react-router-dom';
-
+import { useContext } from 'react'
+import { AuthContext } from '../../context/auth.context'
 
 function Comments({ comments, updateEvent }) {
 
     const commentInstance = new CommentAxios()
+    const { user } = useContext(AuthContext)
 
     function deleteCom(id) {
         console.log()
@@ -19,7 +20,6 @@ function Comments({ comments, updateEvent }) {
     return (
         <>
             {comments.map((oneComment) => {
-                // Esto habra que cambiarlo cuando nos solucionen el populate
                 return (
 
                     <div className='comment' key={oneComment._id}>
@@ -28,7 +28,9 @@ function Comments({ comments, updateEvent }) {
                             <Card.Subtitle className="mb-2 text-muted">{oneComment.author.username}</Card.Subtitle>
 
                             <Card className='colorText' body>{oneComment.body}</Card>
-                            <button onClick={() => deleteCom(oneComment._id)}>Delete</button>
+                            {
+                                user.username === oneComment.author.username ? <button onClick={() => deleteCom(oneComment._id)}>Delete</button> : null
+                            }
                         </Card.Body>
                     </div>
 

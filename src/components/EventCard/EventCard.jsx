@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
@@ -43,20 +44,9 @@ const ExpandMore = styled((props) => {
 export default function EventCard({ oneEvent }) {
     const [expanded, setExpanded] = React.useState(false);
     const navigate = useNavigate()
-    let logo;
+    let logo
     let startDate
     let endDate
-
-    const navigateTo = (id) => {
-        navigate(`/event/${id}`)
-    }
-
-    function formatDates() {
-        startDate = new Date(oneEvent.startDate).toDateString()
-        endDate = new Date(oneEvent.endDate).toDateString()
-    }
-    formatDates()
-
     switch (oneEvent.place) {
         case 'Baqueira-Beret':
             logo = baqueira;
@@ -90,9 +80,20 @@ export default function EventCard({ oneEvent }) {
             break;
     }
 
+    const navigateTo = (id) => {
+        navigate(`/event/${id}`)
+    }
+
+    function formatDates() {
+        startDate = new Date(oneEvent.startDate).toDateString()
+        endDate = new Date(oneEvent.endDate).toDateString()
+    }
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    formatDates()
 
     return (
         <Card sx={{ maxWidth: 345 }}>

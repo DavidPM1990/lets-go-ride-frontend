@@ -1,5 +1,5 @@
 function Freestyle({ freestyle }) {
-    if (freestyle === true) {
+    if (freestyle) {
         return (<>
             <h5>Freestyle ✓</h5>
         </>)

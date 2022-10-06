@@ -1,7 +1,6 @@
 
-
 function ApresSki({ party }) {
-    if (party === true) {
+    if (party) {
         return (<>
 
             <h5>ApresSki ✓</h5>
