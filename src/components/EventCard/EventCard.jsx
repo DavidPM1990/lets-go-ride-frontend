@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './EventCard.css'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
@@ -98,6 +99,7 @@ export default function EventCard({ oneEvent }) {
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardHeader
+                className='CardHeader'
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
 
@@ -105,38 +107,41 @@ export default function EventCard({ oneEvent }) {
                 }
 
                 title={oneEvent.name}
-                subheader={oneEvent.author.username}
+
+                subheader={<Typography sx={{ color: 'white', }}>{oneEvent.author.username}</Typography>}
 
             />
             <CardMedia
                 component="img"
                 height="194"
                 image={logo}
-                alt="Paella dish"
+                alt="logo"
             />
 
-            <CardActions disableSpacing>
+            <CardActions className='expand' disableSpacing>
+
 
                 <ExpandMore
+
                     expand={expanded}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    <ExpandMoreIcon />
+                    <ExpandMoreIcon className='expandIcon' />
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
+                <CardContent className='cardContent'>
                     <Typography variant="subtitle2" ><strong>From:</strong>  {startDate}<br /> <strong>to:</strong>  {endDate}</Typography>
                     <Typography variant="subtitle1" ><br />
                         <br />
-                        <strong>Author:</strong> {oneEvent.eventLevel}<br />
+                        <strong>Level:</strong> {oneEvent.eventLevel}<br />
                         Do you wanna join this event?
                     </Typography><br />
-
-                    <Button onClick={() => navigateTo(oneEvent._id)} variant="outlined">See details!</Button>
-
+                    <div className='cardButton'>
+                        <Button style={{ color: 'white', border: '1px solid white' }} onClick={() => navigateTo(oneEvent._id)} variant="outlined">See details!</Button>
+                    </div>
                 </CardContent>
             </Collapse>
         </Card >

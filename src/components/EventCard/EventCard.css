@@ -1,0 +1,32 @@
+.CardHeader {
+    background-color: #0c131d;
+    color: white
+}
+
+.expand {
+    background-color: #0c131d;
+}
+
+.expandIcon {
+    color: white;
+}
+
+.cardContent {
+    color: white;
+    background-color: #0c131d;
+}
+
+.tipography {
+    color: white;
+}
+
+.cardButton {
+    color: white;
+    margin-left: 25%;
+}
+
+
+
+/* .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+    color: white
+} */
