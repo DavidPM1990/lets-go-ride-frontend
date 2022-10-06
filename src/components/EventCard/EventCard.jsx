@@ -25,10 +25,10 @@ import boitaull from './assets/boitaull-logo.png'
 import candanchu from './assets/candanchu.jpg'
 import cerler from './assets/cerler.jpg'
 import formigal from './assets/formigal-logo.jpg'
-import lapinilla from './assets/lapinilla.png'
+import lapinilla from './assets/lapinilla.jpg'
 import panticosa from './assets/panticosa.png'
 import sierranevada from './assets/sierranevada.jpeg'
-import valdesqui from './assets/valdesqui.png'
+import valdesqui from './assets/valdesqui.jpg'
 
 const ExpandMore = styled((props) => {
 
@@ -108,13 +108,19 @@ export default function EventCard({ oneEvent }) {
 
                 title={oneEvent.name}
 
-                subheader={<Typography sx={{ color: 'white', }}>{oneEvent.author.username}</Typography>}
+                subheader={<Typography sx={{ color: 'white' }}>{oneEvent.author.username}</Typography>}
 
             />
             <CardMedia
+                width='10%'
+                contain='strict'
                 component="img"
                 height="194"
                 image={logo}
+                style={{
+                    height: '200px',
+                    width: '350px'
+                }}
                 alt="logo"
             />
 
@@ -140,7 +146,7 @@ export default function EventCard({ oneEvent }) {
                         Do you wanna join this event?
                     </Typography><br />
                     <div className='cardButton'>
-                        <Button style={{ color: 'white', border: '1px solid white' }} onClick={() => navigateTo(oneEvent._id)} variant="outlined">See details!</Button>
+                        <Button style={{ color: 'white', border: '1px solid white' }} onClick={() => navigateTo(oneEvent._id)}>See details!</Button>
                     </div>
                 </CardContent>
             </Collapse>

@@ -95,38 +95,38 @@ function Event({ event, updateEvent, plano }) {
     }
 
     return (<>
-        <Card sx={{ maxWidth: 645 }}>
+        <Card className='flexCard' sx={{ maxWidth: 645 }}>
             <CardMedia
                 component="img"
-                height="140"
+                height="340"
                 image={plano}
                 alt="image"
             />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+            <CardContent className='cardContentColor'>
+                <Typography className='bckColorTypo' gutterBottom variant="h5" component="div">
                     {event.name}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                    {event.author.username}
+                <Typography className='bckColorTypo' gutterBottom variant="h5" component="div">
+                    <strong>Author:</strong> {event.author.username}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {event.eventLevel}
+                <Typography className='bckColorTypo' variant="body2">
+                    <strong>Level:</strong> {event.eventLevel}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {event.place}
+                <Typography className='bckColorTypo' variant="body2" >
+                    <strong>Place:</strong> {event.place}
                 </Typography>
                 <br />
-                <Typography variant="body2" color="text.secondary">
+                <Typography className='bckColorTypo' variant="body2" >
                     {event.description}
                 </Typography>
                 <br />
-                <Typography variant="body2" color="text.secondary">
-                    {startDate}
+                <Typography className='bckColorTypo' variant="body2" >
+                    <strong>Starts:</strong> {startDate}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {endDate}
+                <Typography className='bckColorTypo' variant="body2" >
+                    <strong>To:</strong> {endDate} :)
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography className='bckColorTypo' variant="body2" >
                     <span>Users who joined this:</span>
                     <br />
                     {event.usersList.map(el => {
@@ -136,31 +136,39 @@ function Event({ event, updateEvent, plano }) {
                     })}
                 </Typography>
                 <br />
-                <ApresSki party={event.apresSki} />
-                <Freestyle freestyle={event.freestyle} />
+                <Typography className='bckColorTypo' variant="body2" >
+                    <ApresSki party={event.apresSki} />
+                    <Freestyle freestyle={event.freestyle} />
+                </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions className='lastRow'>
 
-                {
-                    showButton && <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
-                }
+                <div className='icons'>
+                    {
+                        showButton && <IconButton onClick={() => deleteEvent(event._id)}> <DeleteIcon /></IconButton>
+                    }
+                </div>
+                <div className='icons'>
+                    <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
+                </div>
+                <div className='icons'>
 
-                {
-                    showUpdateButton && <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
-                }
-
-                <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
-
-                {
-                    showFavButton && <Button onClick={addToFavourites}>
-                        {
-                            user.eventsJoined.map(event => event._id).includes(event._id) ? 'Leave this event :(' : 'Join this event :)'
-                        }
-                    </Button>
-                }
+                    {
+                        showUpdateButton && <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
+                    }
+                </div>
 
             </CardActions>
         </Card>
+        <div className='joinButton'>
+            {
+                showFavButton && <Button style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }} onClick={addToFavourites}>
+                    {
+                        user.eventsJoined.map(event => event._id).includes(event._id) ? 'Leave this event :(' : 'Join this event :)'
+                    }
+                </Button>
+            }
+        </div>
 
         {
             showForm && <FormComments updateEvent={updateEvent} event={event} handleForm={handleForm} />

@@ -1,3 +1,4 @@
+import './FormComments.css'
 import CommentAxios from '../../services/comments.services';
 import { Button, Form } from 'react-bootstrap';
 import { useContext, useState } from 'react';
@@ -32,9 +33,13 @@ function FormComments({ updateEvent, event, handleForm }) {
     return (
         <>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label><strong>Make your comment</strong></Form.Label>
-                <Form.Control as="textarea" onChange={updateNewComment} name='body' rows={4} />
-                <Button onClick={postComment}>Post comment</Button>
+                <div className='formLabel'>
+                    <Form.Label className='makeCommentButton'><strong>Make your comment</strong></Form.Label>
+                    <Form.Control className='formControl' as="textarea" onChange={updateNewComment} name='body' rows={4} />
+                </div>
+                <div className='postButton'>
+                    <Button style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }} onClick={postComment}>Post comment</Button>
+                </div>
             </Form.Group>
         </>
     )

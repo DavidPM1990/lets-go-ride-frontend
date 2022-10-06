@@ -1,0 +1,22 @@
+.postButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+
+.makeCommentButton {
+    color: white;
+    margin-left: 125px;
+}
+
+.formControl {
+    width: 50%;
+
+}
+
+.formLabel {
+
+    margin-left: 438px;
+
+}
