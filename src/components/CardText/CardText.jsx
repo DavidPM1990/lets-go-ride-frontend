@@ -2,7 +2,6 @@ import './CardText.css'
 import snowboard3 from './assets/snowboard3.avif'
 import { useNavigate } from "react-router-dom";
 
-
 function CardText() {
     const navigate = useNavigate();
     function goTo() {
