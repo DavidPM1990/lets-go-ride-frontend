@@ -62,21 +62,22 @@ function CreateForm() {
     };
 
     return (
-        <>
-            <Form onSubmit={createNewEvent} className='form'>
-                <Form.Group className="w-50 mb-3 formGroup" controlId="formBasicEmail">
-                    <Form.Label>Choose a cool name for your event</Form.Label>
-                    <Form.Control onChange={updateNewEvent} size="lg" name='name' required type="text" placeholder="Title of event" />
-                </Form.Group>
-                <br />
-                <Form.Group className="w-75 mb-3 formGroup" controlId="formBasicEmail">
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control onChange={updateNewEvent} as="textarea" required name='description' rows={4} placeholder="Description of event" />
-                </Form.Group>
-                <br />
-                <Form.Group className="w-25 mb-3 formGroup" controlId="formBasicEmail">
+
+        <Form onSubmit={createNewEvent} className='form'>
+            <Form.Group className="w-50 mb-3 formGroup" controlId="formBasicEmail">
+                <Form.Label>Choose a cool name for your event</Form.Label>
+                <Form.Control onChange={updateNewEvent} size="lg" name='name' required type="text" placeholder="Title of event" />
+            </Form.Group>
+            <br />
+            <Form.Group className="w-75 mb-3 formGroup" controlId="formBasicEmail">
+                <Form.Label>Description</Form.Label>
+                <Form.Control onChange={updateNewEvent} as="textarea" required name='description' rows={4} placeholder="Description of event" />
+            </Form.Group>
+            <br />
+            <div className="selects">
+                <Form.Group className="w-25 mb-3 " controlId="formBasicEmail">
                     <Form.Label>Difficulty Level</Form.Label>
-                    <Form.Select onChange={updateNewEvent} name='eventLevel' required aria-label="Default select example">
+                    <Form.Select onChange={updateNewEvent} name='eventLevel' required>
                         <option value="Low">Low</option>
                         <option value="Medium-Low">Medium-Low</option>
                         <option value="Medium">Medium</option>
@@ -85,8 +86,8 @@ function CreateForm() {
                     </Form.Select>
                 </Form.Group>
                 <br />
-                <Form.Group className="w-25 mb-3 formGroup" controlId="formBasicEmail">
-                    <Form.Label>Stations :)</Form.Label>
+                <Form.Group className="w-25 mb-3 " controlId="formBasicEmail">
+                    <Form.Label>Stations</Form.Label>
                     <Form.Select onChange={updateNewEvent} name='place' required aria-label="Default select example">
                         <option></option>
                         <option value="Baqueira-Beret">Baqueira-Beret</option>
@@ -101,39 +102,39 @@ function CreateForm() {
                         <option value="Valdesquí">Valdesquí</option>
                     </Form.Select>
                 </Form.Group>
-                <br />
-                <Form.Group className="mb-3 d-flex formGroup formFlex" >
+            </div>
+            <br />
+            <Form.Group className="mb-3 formGroupSwitches " >
 
-                    <Form.Group className="mb-3 d-flex formGroup formFlex" >
-                        <Form.Label>Freestyle:</Form.Label>
-                        <Form.Check onChange={updateEventSwitch} type="switch" name='freestyle' />
-                    </Form.Group>
-
-                    <Form.Group className="d-flex mb-3 formGroup formFlex" >
-                        <Form.Label>Après Ski:</Form.Label>
-                        <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' />
-                    </Form.Group>
-
+                <Form.Group className="mb-3  switches" >
+                    <Form.Label>Freestyle:</Form.Label>
+                    <Form.Check onChange={updateEventSwitch} type="switch" name='freestyle' />
                 </Form.Group>
-                <div className='formGroup' style={{ width: 230 }}><DatePicker
 
-                    selected={startingDate}
-                    isClearable
-                    onChange={onChange}
-                    onClick={updateNewEvent}
-                    startDate={startingDate}
-                    endDate={endingDate}
-                    selectsRange
-                    inline
-                    required
-                />
-                </div>
-                <button className='submitButton' type='submit'>
-                    Create Event
-                </button>
+                <Form.Group className=" mb-3 switches" >
+                    <Form.Label>Après Ski:</Form.Label>
+                    <Form.Check onChange={updateEventSwitch} type="switch" name='apresSki' />
+                </Form.Group>
 
-            </Form>
-        </>
+            </Form.Group>
+            <div className='formGroup' style={{ width: 230 }}><DatePicker
+
+                selected={startingDate}
+                isClearable
+                onChange={onChange}
+                onClick={updateNewEvent}
+                startDate={startingDate}
+                endDate={endingDate}
+                selectsRange
+                inline
+                required
+            />
+            </div>
+
+            <Button className='submitButton' style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }}>Create Event</Button>
+
+        </Form>
+
     )
 }
 
