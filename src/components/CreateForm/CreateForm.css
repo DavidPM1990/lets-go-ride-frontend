@@ -1,0 +1,35 @@
+.form {
+    margin-top: 50px;
+    margin-bottom: 450px;
+}
+
+.formGroup {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.submitButton {
+    margin: 20px;
+    background-color: #2a6bb5;
+    color: aliceblue;
+    outline: none;
+    text-align: center;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 15px;
+}
+
+.submitButton:hover {
+    background-color: #0a0a0a
+}
+
+.submitButton:active {
+    background-color: #243b55;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
