@@ -28,6 +28,7 @@ function CreateForm() {
         eventHTML.preventDefault();
         const newData = { ...newEvent }
 
+        //la guapada esta hay que probar a refaactorizarla poniendola en el useSta
         if (!newEvent.freestyle) {
             newData.freestyle = false
         }
@@ -78,6 +79,7 @@ function CreateForm() {
                 <Form.Group className="w-25 mb-3 " controlId="formBasicEmail">
                     <Form.Label>Difficulty Level</Form.Label>
                     <Form.Select onChange={updateNewEvent} name='eventLevel' required>
+                        <option>Select the difficulty of the event</option>
                         <option value="Low">Low</option>
                         <option value="Medium-Low">Medium-Low</option>
                         <option value="Medium">Medium</option>
@@ -89,7 +91,7 @@ function CreateForm() {
                 <Form.Group className="w-25 mb-3 " controlId="formBasicEmail">
                     <Form.Label>Stations</Form.Label>
                     <Form.Select onChange={updateNewEvent} name='place' required aria-label="Default select example">
-                        <option></option>
+                        <option>Select your fav station </option>
                         <option value="Baqueira-Beret">Baqueira-Beret</option>
                         <option value="Boí Taüll">Boí Taüll</option>
                         <option value="Formigal">Formigal</option>
@@ -131,7 +133,7 @@ function CreateForm() {
             />
             </div>
 
-            <Button className='submitButton' style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }}>Create Event</Button>
+            <Button onClick={createNewEvent} className='submitButton' style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }}>Create Event</Button>
 
         </Form>
 

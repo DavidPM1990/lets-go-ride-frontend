@@ -1,10 +1,12 @@
 import './EventID.css'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Event from '../../components/Event/Event';
 import EventAxios from '../../services/eventAxios';
-import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
+// import LoadingComponent from '../../components/Loading';
+
 import astun from './assets/planoastun.jpg'
 import baqueira from './assets/planobaqueiraberet.jpg'
 import boitaull from './assets/planoboitaull.jpg'
@@ -60,7 +62,6 @@ const EventIDPage = () => {
         eventAxios
             .getOneEventId(id)
             .then((event) => {
-                console.log('Soy el evento :)', event)
                 setevent(event);
             });
     }
@@ -75,11 +76,12 @@ const EventIDPage = () => {
         });
     };
 
-    if (!event) {    //usar isloading del contexto
+    if (!event) {
         return (
             <Spinner animation='border' role='status'>
                 <span className='visually-hidden'>Loading...</span>
             </Spinner>
+            // <LoadingComponent />
         );
     }
     return <Event event={event} plano={plano} updateEvent={updateEvent} deleteEvent={deleteEvent} />;

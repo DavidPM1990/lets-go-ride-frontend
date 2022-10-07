@@ -30,6 +30,7 @@ import panticosa from './assets/panticosa.png'
 import sierranevada from './assets/sierranevada.jpeg'
 import valdesqui from './assets/valdesqui.jpg'
 
+
 const ExpandMore = styled((props) => {
 
     const { expand, ...other } = props;
@@ -42,12 +43,13 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function EventCard({ oneEvent }) {
+function EventCard({ oneEvent }) {
     const [expanded, setExpanded] = React.useState(false);
     const navigate = useNavigate()
     let logo
     let startDate
     let endDate
+
     switch (oneEvent.place) {
         case 'Baqueira-Beret':
             logo = baqueira;
@@ -107,10 +109,9 @@ export default function EventCard({ oneEvent }) {
                 }
 
                 title={oneEvent.name}
-
                 subheader={<Typography sx={{ color: 'white' }}>{oneEvent.author.username}</Typography>}
-
             />
+
             <CardMedia
                 width='10%'
                 contain='strict'
@@ -126,25 +127,30 @@ export default function EventCard({ oneEvent }) {
 
             <CardActions className='expand' disableSpacing>
 
-
                 <ExpandMore
-
                     expand={expanded}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
+
                     <ExpandMoreIcon className='expandIcon' />
+
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
+
                 <CardContent className='cardContent'>
+
                     <Typography variant="subtitle2" ><strong>From:</strong>  {startDate}<br /> <strong>to:</strong>  {endDate}</Typography>
-                    <Typography variant="subtitle1" ><br />
+
+                    <Typography variant="subtitle1" >
                         <br />
                         <strong>Level:</strong> {oneEvent.eventLevel}<br />
                         Do you wanna join this event?
-                    </Typography><br />
+
+                    </Typography>
+                    <br />
                     <div className='cardButton'>
                         <Button style={{ color: 'white', border: '1px solid white' }} onClick={() => navigateTo(oneEvent._id)}>See details!</Button>
                     </div>
@@ -153,4 +159,6 @@ export default function EventCard({ oneEvent }) {
         </Card >
     );
 }
+
+export default EventCard;
 

@@ -1,6 +1,4 @@
 import "./EventListPage.css";
-// import { useState, useEffect } from 'react';
-// import EventAxios from "../../services/eventAxios";
 import EventCard from "../EventCard/EventCard"
 
 function EventList({ events }) {

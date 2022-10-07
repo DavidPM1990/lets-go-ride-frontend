@@ -8,8 +8,6 @@ const IsPrivate = (props) => {
 
     if (isLoading) return <h1>Loading...</h1>;
 
-
-
     if (isLoggedIn) {
         console.log(isLoggedIn)
         return props.children;
