@@ -1,26 +1,29 @@
 import './ProfilePage.css'
 import { AuthContext } from '../../context/auth.context'
 import { useContext } from 'react'
-import { useNavigate } from "react-router-dom";
+
+import ProfileEvent from '../../components/ProfileEvent/ProfileEvent';
 
 function ProfilePage() {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
-    function goToEvent(id) {
-        navigate(`/event/${id}`)
-    }
+
 
     return (
         <>
-            <h1>Welcome, {user.username}!</h1>
-            <h4>{user.email}</h4>
-            <h4> {user.phoneNumber}</h4>
-            <h4>Events Joined:</h4>
-            {user.eventsJoined.map(el => {
-                return (
-                    <div key={el._id} onClick={() => goToEvent(el._id)}><p className='eventP'>{el.name}</p></div>
-                )
-            })}
+            <h1 className='fontTitle'>Welcome, {user.username}!</h1>
+            <h4 className='emailStyle'>Email:     {user.email}</h4>
+            <h4 className='phoneStyle'>Telephone number:     {user.phoneNumber}</h4>
+            <hr className='hr' />
+            <h4 className='eventJoinedStyle'>Events Joined:</h4>
+
+            <div className='cardStyle'>
+
+                {user.eventsJoined.map(el => {
+                    return (
+                        <ProfileEvent event={el} />
+                    )
+                })}
+            </div>
 
         </>
     )

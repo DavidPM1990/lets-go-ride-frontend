@@ -49,7 +49,6 @@ function EventUpdate() {
         console.log(newData)
 
         eventInstance.updateEvent(id, newData).then((event) => {
-            // console.log("AQUI YA ESTA CREADO", event)
             navigate(`/event/${id}`);
         })
     }
@@ -135,7 +134,7 @@ function EventUpdate() {
 
             </div>
 
-            <Button className='submitButton' style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }}>Create Event</Button>
+            <Button onClick={createNewEvent} className='submitButton' style={{ color: 'white', border: '1px solid white', backgroundColor: 'transparent' }}>Create Event</Button>
 
         </Form>
     )

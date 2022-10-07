@@ -22,15 +22,10 @@ function LogInPage() {
     }
   }, [user])
 
-
-
-
   const login = (eventHTML) => {
     eventHTML.preventDefault();
     loginInstance.logIn(userlogin).then((response) => {
-      console.log('DATOS DEL LOGIN', response)
       storeToken(response.token);
-      console.log('soy el tokeeeeeennnnn------->', response.token)
       authentication();
 
     }).catch(err => console.log(err))
@@ -63,7 +58,6 @@ function LogInPage() {
         </button>
       </form>
     </div>
-
 
   )
 }

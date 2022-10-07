@@ -43,8 +43,9 @@
 .homeTitle {
     position: absolute;
     z-index: 1;
-    left: 25%;
-    top: 40%;
+    left: 23%;
+    top: 18%;
     color: black;
-    font-size: x-large;
+    font-size: 40px;
+    text-align: center;
 }

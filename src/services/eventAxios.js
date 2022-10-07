@@ -6,7 +6,6 @@ class EventAxios extends InitAxios {
     }
 
     getAllEvents() {
-        // return this.axios.get(`/?offset=${query.page}`).then((response) => response.data)
         return this.axios.get('/').then((response) => response.data)
     }
 

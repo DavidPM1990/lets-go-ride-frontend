@@ -1,3 +1,8 @@
+import { AuthContext } from '../../context/auth.context'
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useState, useContext } from 'react';
+
 import * as React from 'react';
 import { IconButton } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -9,12 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CreateIcon from '@mui/icons-material/Create';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-import { AuthContext } from '../../context/auth.context'
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import EventAxios from '../../services/eventAxios';
-
-import { useState, useContext } from 'react';
 import Comments from '../Comments/Comments'
 import ApresSki from '../ApresSki/ApresSki';
 import Freestyle from '../freestyle/freestyle';
@@ -23,26 +23,21 @@ import snowboard from './assets/snowboard.jpg'
 
 function Event({ event, updateEvent, plano }) {
 
-    let startDate
-    let endDate
-
-    function formatDates() {
-        // const prueba = event.startDate.toLocaleString("en-US", { timeZone: "Australia/Adelaide" })
-        // console.log("Hola soy la fecha", prueba)
-        startDate = new Date(event.startDate).toDateString()
-        endDate = new Date(event.endDate).toDateString()
-    }
-
-    const { user, authentication } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const [showForm, setShowForm] = useState(false)
-    const [toggleButton, setToggleButton] = useState('Join this event :)')
-
-    const eventInstance = new EventAxios()
-
+    let startDate;
+    let endDate;
     let showButton;
     let showUpdateButton;
     let showFavButton;
+    const { user, authentication } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [showForm, setShowForm] = useState(false)
+
+    const eventInstance = new EventAxios()
+
+    function formatDates() {
+        startDate = new Date(event.startDate).toDateString()
+        endDate = new Date(event.endDate).toDateString()
+    }
 
     function identify() {
         if (user._id === event.author._id) {
@@ -58,11 +53,6 @@ function Event({ event, updateEvent, plano }) {
         }
     }
 
-    identify()
-    formatDates()
-
-
-
     function deleteEvent(id) {
         console.log("Deleted------->", id)
         eventInstance
@@ -71,11 +61,8 @@ function Event({ event, updateEvent, plano }) {
             .catch((err) => console.log(err))
     }
 
-
-
     function addToFavourites() {
         console.log("soy el user", user._id)
-
 
         eventInstance.joinEvent(user._id, event._id)
             .then(() => {
@@ -93,6 +80,9 @@ function Event({ event, updateEvent, plano }) {
     function updateOneEvent(id) {
         navigate(`/event/update/${id}`)
     }
+
+    identify()
+    formatDates()
 
     return (<>
         <Card className='flexCard' sx={{ maxWidth: 645 }}>
@@ -125,13 +115,15 @@ function Event({ event, updateEvent, plano }) {
                 </Typography>
                 <Typography className='bckColorTypo' variant="body2" >
                     <strong>To:</strong> {endDate} :)
+
                 </Typography>
+                <br />
                 <Typography className='bckColorTypo' variant="body2" >
-                    <span>Users who joined this:</span>
-                    <br />
+                    <strong><p>Users who joined this:</p></strong>
+
                     {event.usersList.map(el => {
                         return (
-                            <span key={el._id}><span>{el.username}</span></span>
+                            <p key={el._id}><span>{el.username}</span></p>
                         )
                     })}
                 </Typography>
@@ -152,7 +144,6 @@ function Event({ event, updateEvent, plano }) {
                     <IconButton onClick={handleForm}> <ChatBubbleIcon /></IconButton>
                 </div>
                 <div className='icons'>
-
                     {
                         showUpdateButton && <IconButton onClick={() => updateOneEvent(event._id)}> <CreateIcon /></IconButton>
                     }

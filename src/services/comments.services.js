@@ -5,10 +5,6 @@ class CommentAxios extends InitAxios {
         super('comment')
     }
 
-    // findComments() {
-    //     return this.axios.get('/').then((response) => response.data)
-    // }
-
     createComment(body, eventId) {
         return this.axios.post('/create-comment', body, eventId).then((response) => response.data)
     }
@@ -16,7 +12,6 @@ class CommentAxios extends InitAxios {
     deleteComment(id) {
         return this.axios.delete(`/delete-comment/${id}`).then((response) => response.data);
     }
-
 }
 
 export default CommentAxios;

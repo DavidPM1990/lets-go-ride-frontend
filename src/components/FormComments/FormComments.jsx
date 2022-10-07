@@ -19,7 +19,6 @@ function FormComments({ updateEvent, event, handleForm }) {
         commentInstance
             .createComment(newComment)
             .then((newComment) => {
-                console.log("soy el nuevo------->", newComment)
                 updateEvent()
                 handleForm()
             })
